@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.blue-underline {
+  border-bottom: 4px solid #29B6F6;
+}
