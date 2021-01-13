@@ -1,11 +1,11 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Link as ChakraLink } from '@chakra-ui/react'
 
 export default function Footer(){
     return (
-        <Box mt='24'>
+        <Box mt='24' bg='#64FCD9' fontWeight='bold' p='6' fontSize='lg' display='flex' justifyContent='center' textAlign='center' alignItems='center' color='gray.700' margin='6rem auto 0 auto'>
             <footer>
-                Made with hard work and <span> ♥️ </span> by: <br />
-                <a href='https://bobbybytez.io'>Bobby Hall Jr</a>
+                Made with <span> ❤️ </span> and hard work by: <br />
+                <ChakraLink color='gray.600' textDecoration='underline' href='https://bobbybytez.io'>Bobby Hall Jr</ChakraLink>
             </footer>
         </Box>
     )

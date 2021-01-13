@@ -10,11 +10,14 @@ export default function Layout({ children, center }) {
         <Head>
             <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         </Head>
+
         <Navbar />
-        <Container pt='28' d='flex' margin='0 auto' flexDirection='column' justifyContent='center' alignItems='center' mt='auto' maxW='xl'>
+
+        <Container pt='28' d='flex' margin='0 auto' flexDirection='column' justifyContent='center' alignItems='center' maxW='xl'>
             {children}
-            <Footer />
         </Container>
+
+        <Footer />
         </>
     )
 }
