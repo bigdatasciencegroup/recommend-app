@@ -1,21 +1,24 @@
-import { useForm } from "react-hook-form";
 import React from "react";
+import { useForm } from "react-hook-form";
 import {
   FormErrorMessage,
   FormLabel,
   FormControl,
   Input,
-  Button
+  Button,
+  Textarea,
+  Stack
 } from "@chakra-ui/react";
 import UploadImage from '../../components/uploadImage'
 
 export default function HookForm() {
+
   const { handleSubmit, errors, register, formState } = useForm();
 
   function validateName(value) {
     if (!value) {
-      return "You don't have a name? 🤔";
-    } 
+      return "Name is required";
+    }
   }
 
   function validateEmail(value) {
@@ -40,49 +43,61 @@ export default function HookForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Stack spacing="10" w='full'>
+        <form onSubmit={handleSubmit(onSubmit)}>
 
-      <FormControl isInvalid={errors.name}>
+        <FormControl isInvalid={errors.name}>
+            {/* name */}
+            <FormLabel mt='4' htmlFor="name">First name</FormLabel>
+            <Input
+            mb='2'
+            name="name"
+            placeholder="Bobby Hall Jr"
+            ref={register({ required: true })}
+            />
+            <FormErrorMessage>
+            {errors.name && errors.name.message}
+            </FormErrorMessage>
+            </FormControl>
 
-        <UploadImage postRequestUrl='#'/>
+            <textarea name="Recommendation" ref={register({required: true})} />
 
-        {/* name */}
-        <FormLabel htmlFor="name">First name</FormLabel>
-        <Input
-          name="name"
-          placeholder="name"
-          ref={register({ validate: validateName })}
-        />
-        <FormErrorMessage>
-          {errors.name && errors.name.message}
-        </FormErrorMessage>
-      </FormControl>
 
-      {/* email */}
-      <FormLabel htmlFor="name">Email</FormLabel>
-        <Input
-          name="email"
-          placeholder="email"
-          ref={register({ validate: validateEmail })}
-        />
-        <FormErrorMessage>
-          {errors.email && errors.email.message}
-        </FormErrorMessage>
+            {/* email */}
+            <FormControl isInvalid={errors.email} isRequired>
+                <FormLabel mt='4' htmlFor="name">Email</FormLabel>
+                <Input
+                isRequired
+                name="email"
+                placeholder="bobbyhalljrcs@gmail.com"
+                ref={register({ validate: validateEmail })}
+                />
+                <FormErrorMessage>
+                {errors.email && errors.email.message}
+                </FormErrorMessage>
+            </FormControl>
 
-        {/* recommendation */}
-        <FormLabel htmlFor="recommendation">recommendation</FormLabel>
-        <Input
-          name="recommendation"
-          placeholder="Bobby has been a pleasure to work with. I would absolutely love to work with him again! 😁"
-          ref={register({ validate: validateRecommendation })}
-        />
-        <FormErrorMessage>
-          {errors.recommendation && errors.recommendation.message}
-        </FormErrorMessage>
+            {/* recommendation */}
+            <FormControl isInvalid={errors.recommendation} isRequired>
+                <FormLabel mt='10' htmlFor="recommendation">recommendation</FormLabel>
+                <Textarea
+                isRequired
+                size='md'
+                h='200px'
+                name="recommendation"
+                placeholder="Jane has been a pleasure to work with. I would absolutely love to work with her again! 😁"
+                ref={register({ validate: validateRecommendation })}
+                />
+                <FormErrorMessage>
+                {errors.recommendation && errors.recommendation.message}
+                </FormErrorMessage>
+            </FormControl>
 
-      <Button mt={4} colorScheme="teal" isLoading={formState.isSubmitting} type="submit">
-        Submit
-      </Button>
-    </form>
+            <Button isLoading={formState.isSubmitting} type="submit" _hover={{ bg: 'blue.400' }} fontWeight='600' fontSize='lg' boxShadow='xl' mt='3rem' py='1.5rem' w='full' color='white' bg='blue.300' type="submit" form="my-form">
+                Finish and Review
+            </Button>
+
+        </form>
+    </Stack>
   );
 }

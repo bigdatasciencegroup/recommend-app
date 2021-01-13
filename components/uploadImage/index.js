@@ -47,10 +47,10 @@ export default function UploadImage(postRequestUrl) {
           <Tag fontSize='md' color='gray.700' boxShadow='sm' letterSpacing='.2' bg='blue.200' fontWeight='bold' py='2' px='4' borderRadius='full' whiteSpace='nowrap' textAlign='center' my='4'>Change Image</Tag>
         </Box>
         ) : (
-          <Box bg='gray.100' color='gray.500' w='10rem' h='9rem' p='4' border='3px solid #29B6F6' borderRadius='50%'>
-            <span style={{ display: 'flex', justifyContent: 'center', marginTop: '.7rem', alignItems: 'center', flexDirection: 'column' }} className="fa-3x" fill='#a5a5a5'>
+          <Box bg='gray.100' color='gray.500' w='11rem' h='11rem' p='4' cursor='pointer' border='4px solid #29B6F6' borderRadius='50%'>
+            <span style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem', alignItems: 'center', flexDirection: 'column' }} className="fa-3x" fill='#a5a5a5'>
               <i className="fas fa-camera"/>
-            <Text textAlign='center' whiteSpace='nowrap' as='h5' fontSize='sm' fontWeight='bold'>Upload your photo</Text>
+            <Text textAlign='center' whiteSpace='nowrap' as='h5' fontSize='sm' mt='2' fontWeight='bold'>Upload photo/video</Text>
             </span>
           </Box>
         )}
