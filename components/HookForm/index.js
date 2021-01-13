@@ -60,7 +60,7 @@ export default function HookForm() {
             </FormErrorMessage>
             </FormControl>
 
-            <textarea name="Recommendation" ref={register({required: true})} />
+            {/* <textarea name="Recommendation" ref={register({required: true})} /> */}
 
 
             {/* email */}
