@@ -9,7 +9,15 @@ const colors = {
     700: "#2a69ac",
   },
 }
-const theme = extendTheme({ colors })
+
+const fonts = {
+  fonts: {
+    body: "'sans-serif', sans-serif",
+    heading: "'Montserrat', sans-serif",
+    mono: "'Montserrat', monospace",
+  },
+}
+const theme = extendTheme({ colors, fonts })
 
 const config = {
   initialColorMode: "light",

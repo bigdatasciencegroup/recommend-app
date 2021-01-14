@@ -1,4 +1,4 @@
-import { theme as chakraTheme } from "@chakra-ui/react";
+import { theme as chakraTheme, Table, Thead, Tbody, Tr, Th, Td, TableCaption } from "@chakra-ui/react";
 
 const fonts = { ...chakraTheme.fonts, mono: `'N', monospace` };
 

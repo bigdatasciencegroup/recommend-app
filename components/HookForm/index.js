@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import {
   FormErrorMessage,
   FormLabel,
@@ -13,7 +13,7 @@ import UploadImage from '../../components/uploadImage'
 
 export default function HookForm() {
 
-  const { handleSubmit, errors, register, formState } = useForm();
+  const { handleSubmit, control, errors, register, formState } = useForm();
 
   function validateName(value) {
     if (!value) {
@@ -47,17 +47,18 @@ export default function HookForm() {
         <form onSubmit={handleSubmit(onSubmit)}>
 
         <FormControl isInvalid={errors.name}>
+
             {/* name */}
             <FormLabel mt='4' htmlFor="name">First name</FormLabel>
-            <Input
-            mb='2'
-            name="name"
-            placeholder="Bobby Hall Jr"
-            ref={register({ required: true })}
-            />
-            <FormErrorMessage>
-            {errors.name && errors.name.message}
-            </FormErrorMessage>
+                <Input
+                mb='2'
+                name="name"
+                placeholder="Bobby Hall Jr"
+                ref={register({ required: true })}
+                />
+                <FormErrorMessage>
+                {errors.name && errors.name.message}
+                </FormErrorMessage>
             </FormControl>
 
             {/* <textarea name="Recommendation" ref={register({required: true})} /> */}

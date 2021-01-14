@@ -23,6 +23,7 @@ import Navbar from '../../components/navbar'
 import Layout from '../../components/layout'
 import UploadImage from '../../components/uploadImage'
 import HookForm from '../../components/HookForm'
+import theme from '../../theme'
 
 export default function Create(){
     return (
