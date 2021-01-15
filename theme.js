@@ -1,15 +1,24 @@
-import { theme as chakraTheme, Table, Thead, Tbody, Tr, Th, Td, TableCaption } from "@chakra-ui/react";
+import {
+  theme as chakraTheme,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+} from '@chakra-ui/react'
 
-const fonts = { ...chakraTheme.fonts, mono: `'N', monospace` };
+const fonts = { ...chakraTheme.fonts, mono: `'N', monospace` }
 
-const breakpoints = ["40em", "52em", "64em"];
+const breakpoints = ['40em', '52em', '64em']
 
 const theme = {
   ...chakraTheme,
   colors: {
     ...chakraTheme.colors,
     // black: '#16161D',
-    black: "#333",
+    black: '#333',
   },
   fonts,
   breakpoints,
@@ -37,9 +46,9 @@ const theme = {
           </g>
         </svg>
       ),
-      viewBox: "0 0 3000 3163",
+      viewBox: '0 0 3000 3163',
     },
   },
-};
+}
 
-export default theme;
+export default theme

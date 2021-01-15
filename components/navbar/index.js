@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Link from "next/link";
+import React, { useState } from 'react'
+import Link from 'next/link'
 import {
   Box,
   Heading,
@@ -18,16 +18,24 @@ import {
   Link as ChakraLink,
   Stack,
   Divider,
-  Table, Thead, Tbody, Tr, Th, Td, TableCaption, MenuList, MenuItem, Menu, Avatar
-} from "@chakra-ui/react";
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  MenuList,
+  MenuItem,
+  Menu,
+  Avatar,
+} from '@chakra-ui/react'
 // import { DarkModeSwitch } from "./DarkModeSwitch";
 
 const MenuItems = ({ children }, isOpen) => (
   <Menu>
     <MenuList>
-      <MenuItem bg='gray.100'>
-        {children}
-      </MenuItem>
+      <MenuItem bg="gray.100">{children}</MenuItem>
     </MenuList>
   </Menu>
   // <Box bg='gray.100' w='100%'>
@@ -44,13 +52,13 @@ const MenuItems = ({ children }, isOpen) => (
   // </Text>
   // <Divider />
   // </Box>
-);
+)
 
 const Navbar = (props) => {
-  const [show, setShow] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [placement, setPlacement] = React.useState("right");
-  const handlePlacementChange = (event) => setPlacement(event.target.value);
+  const [show, setShow] = useState(false)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [placement, setPlacement] = React.useState('right')
+  const handlePlacementChange = (event) => setPlacement(event.target.value)
   // /
   // const { colorMode } = useColorMode();
   // const bgColor = { light: "gray.100", dark: "gray.700" };
@@ -77,7 +85,7 @@ const Navbar = (props) => {
           <Text
             fontWeight="bold"
             whiteSpace="nowrap"
-            fontSize={["lg", "3xl"]}
+            fontSize={['lg', '3xl']}
             mr={12}
             ml={2}
           >
@@ -85,7 +93,7 @@ const Navbar = (props) => {
           </Text>
         </a>
       </Link>
-      <Box display={["none", "none", "inline-block"]} ml="auto" mr={12}>
+      <Box display={['none', 'none', 'inline-block']} ml="auto" mr={12}>
         <Box display="flex">
           <Box
             d="flex"
@@ -141,25 +149,27 @@ const Navbar = (props) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton mt="7px" border="1px solid #a5a5a5" />
-          <DrawerHeader bg='gray.100' borderBottomWidth="1px">
+          <DrawerHeader bg="gray.100" borderBottomWidth="1px">
             <Link href="/" as="/">
               RecommendApp
             </Link>
           </DrawerHeader>
           <DrawerBody>
-            <Stack spacing='1' mt='4' alignItems='flex-start'>
-              <Heading mb='4' size='sm'>Menu</Heading>
-              <Box d='flex' flexDirection='column' justifyContent='center' my='10'>
+            <Stack spacing="1" mt="4" alignItems="flex-start">
+              <Heading mb="4" size="sm">
+                Menu
+              </Heading>
+              <Box
+                d="flex"
+                flexDirection="column"
+                justifyContent="center"
+                my="10"
+              >
                 <Avatar />
-                <Box d='block'>
-                  name
-                  email
-                </Box>
+                <Box d="block">name email</Box>
               </Box>
-              <Link href="/" as="/" >
-                <a>
-                  Discover
-                </a>
+              <Link href="/" as="/">
+                <a>Discover</a>
               </Link>
               <Link href="/projects" as="/projects">
                 <a>
@@ -186,7 +196,7 @@ const Navbar = (props) => {
         </DrawerContent>
       </Drawer>
     </Flex>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
