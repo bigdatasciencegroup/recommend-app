@@ -25,6 +25,7 @@ import {
 import Layout from '../../components/layout'
 import SolidButton from '../../components/buttons/solidButton'
 import OutlineButton from '../../components/buttons/outlineButton'
+import CustomHeading from '../../components/heading/customHeading'
 
 export default function Recommendation() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -34,31 +35,23 @@ export default function Recommendation() {
 
   return (
     <Layout>
-      <Box mb="32" d="flex" flexDirection="column" alignSelf="flex-start">
-        <Text fontSize={['2xl', '3xl']} fontWeight="700">
-          Review your information
-        </Text>
-        <Text
-          fontSize={['lg', 'xl', '2xl']}
-          mt="2"
-          fontWeight="600"
-          color="gray.500"
-        >
-          Look over your information and make sure everything is correct
-        </Text>
-      </Box>
+      <CustomHeading
+        title="Review your information"
+        description="Look over your information and make sure everything is correct"
+      />
       <Box
         d="flex"
         justifyContent="center"
         alignItems="center"
         flexDirection="column"
         boxShadow="xl"
-        rounded="2rem"
         p="6"
-        mb="16"
+        my="16"
         border="1px solid #f5f5f5"
         position="relative"
         borderTop="4px solid #29B6F6"
+        borderRadius="2xl"
+        w={['90%', '100%']}
       >
         <Avatar
           mb="10"
@@ -140,6 +133,7 @@ export default function Recommendation() {
           color="green.600"
           mt="8"
           fontSize="sm"
+          borderRadius="xl"
         >
           <AlertIcon />
           <Box flex="1" align-items="flex-start">
@@ -157,7 +151,9 @@ export default function Recommendation() {
           />
         </Alert>
       ) : (
-        <Button onClick={() => setAlert(true)}>show alert</Button>
+        <Button borderRadius="xl" onClick={() => setAlert(true)}>
+          show alert
+        </Button>
       )}
       <SolidButton
         text="Publish Recommendation"

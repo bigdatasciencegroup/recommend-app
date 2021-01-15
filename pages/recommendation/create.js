@@ -34,6 +34,7 @@ import Layout from '../../components/layout'
 import UploadImage from '../../components/uploadImage'
 import SolidButton from '../../components/buttons/solidButton'
 import OutlineButton from '../../components/buttons/outlineButton'
+import CustomHeading from '../../components/heading/customHeading'
 
 export default function Create() {
   const router = useRouter()
@@ -54,7 +55,11 @@ export default function Create() {
   return (
     <>
       <Layout>
-        <Box
+        <CustomHeading
+          title="Create a Recommendation"
+          description="Fill out your information so that the person recieving the recommendation knows who sent it"
+        />
+        {/* <Box
           mb="4"
           d="flex"
           flexDirection="column"
@@ -76,7 +81,7 @@ export default function Create() {
             Fill out your information so that the person recieving the{' '}
             recommendation knows who sent it
           </Text>
-        </Box>
+        </Box> */}
 
         <Stack spacing="10" w="full" fontSize="lg">
           {/* image upload */}

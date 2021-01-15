@@ -7,27 +7,22 @@ import {
   Divider,
   Center
 } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 
 import Layout from '../../../components/layout'
 import OutlineButton from '../../../components/buttons/outlineButton'
-import { useRouter } from 'next/router'
+import CustomHeading from '../../../components/heading/customHeading'
 
 export default function Share() {
   const router = useRouter()
   const { id } = router.query
   return (
     <Layout>
-      <Box px={['2', '0']}>
-        <Text as="h1" fontSize="4xl" color="gray.700" fontWeight="700" mb="10">
-          Share with family, friends and co-workers.
-        </Text>
-        <Text fontWeight="600" color="gray.500" fontSize={['lg', 'xl', '2xl']}>
-          Show your appreceiation for your family, friends, members of your
-          team, co-workers, etc. By sharing your recommandation on social media,
-          email or via link.
-        </Text>
-      </Box>
-
+      <CustomHeading
+        title="Share with family, friends and co-workers"
+        description="Show your appreceiation for your family, friends, teamates, co-workers, etc. By sharing your recommandation on social media,
+        email or via link"
+      />
       <Stack mt="16" spacing="8" my="16" w={['90%', '75%']}>
         <Button
           py="6"

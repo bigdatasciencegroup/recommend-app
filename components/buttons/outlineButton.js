@@ -13,6 +13,7 @@ export default function OutlineButton({ text, href, as, callback }) {
             fontWeight="bold"
             fontSize="lg"
             boxShadow="xl"
+            borderRadius="xl"
             py="1.5rem"
             w="full"
             // leftIcon={<ArrowBackIcon />}

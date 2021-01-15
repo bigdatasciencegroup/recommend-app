@@ -195,7 +195,7 @@ const Navbar = (props) => {
                 flexDirection="column"
                 justifyContent="center"
                 mt="2"
-                mb="12"
+                mb="4"
               >
                 <Text fontSize="lg" mb="4" color="gray.400" fontWeight="700">
                   Profile
@@ -220,20 +220,20 @@ const Navbar = (props) => {
                   </Box>
                 </Box>
               </Box>
-
               <Divider />
 
-              <Text
-                fontSize="lg"
-                pt="4"
-                mb="2"
-                color="gray.400"
-                fontWeight="700"
-              >
+              <Text fontSize="lg" pt="8" color="gray.400" fontWeight="700">
                 Menu
               </Text>
-              <UnorderedList _activeLink="blue.300" listStyleType="none">
-                <ListItem py="2">
+              <UnorderedList
+                d="flex"
+                justifyContent="center"
+                alignItems="flex-start"
+                flexDirection="column"
+                _activeLink="blue.300"
+                listStyleType="none"
+              >
+                <ListItem pb="2">
                   <Link href="/" as="/">
                     <a>
                       <MenuItems>Home</MenuItems>

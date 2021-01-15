@@ -14,6 +14,7 @@ export default function SolidButton({ text, href, as, callback }) {
             fontSize="lg"
             color="white"
             py="1.5rem"
+            borderRadius="xl"
             w="full"
             // rightIcon={<ArrowFowardIcon />}
           >
