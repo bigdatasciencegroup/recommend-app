@@ -9,7 +9,7 @@ export default function CustomHeading({ title, description }) {
       <Text
         as="h2"
         my="4"
-        fontSize={['lg', 'xl', '2xl']}
+        fontSize={['xl', '2xl']}
         fontWeight="600"
         color="gray.500"
       >

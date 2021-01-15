@@ -9,25 +9,23 @@ import HomeSVG from '../components/homeSVG'
 export default function Home() {
   return (
     <Layout>
-      <Box>
+      <Box textAlign="center">
         <Text
           bgGradient="linear(to-r, #29B6F6,#64FCD9)"
           bgClip="text"
-          fontSize={['3xl', '4xl', '6xl']}
-          whiteSpace="nowrap"
+          fontSize={['3xl', '4xl', '5xl']}
+          whiteSpace={['wrap', 'nowrap']}
           fontWeight="black"
-          textAlign="left"
         >
           Give. Recieve. Share.
         </Text>
         <Text
           my="8"
-          mx="2"
+          // mx="2"
           letterSpacing="1"
-          fontSize={['xl', '2xl']}
+          fontSize={['lg', 'xl']}
           fontWeight="700"
           color="gray.500"
-          textAlign="left"
         >
           We make it super easy to <span className="blue-text">give</span>,{' '}
           <span className="blue-text">recieve</span> and{' '}

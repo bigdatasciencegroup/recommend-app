@@ -65,40 +65,40 @@ export default function Recommendation() {
           <Text color="gray.400" fontSize={['sm', 'md']} fontWeight="bold">
             Name:
           </Text>
-          <Text fontSize="lg" fontWeight="600" mb="6">
+          <Text fontSize={['md', 'lg']} fontWeight="600" mb="6">
             Bobby Hall Jr
           </Text>
 
           <Text color="gray.400" fontSize={['sm', 'md']} fontWeight="bold">
             Email:
           </Text>
-          <Text fontSize="lg" fontWeight="600" mb="6">
+          <Text fontSize={['md', 'lg']} fontWeight="600" mb="6">
             bobbyhalljr@gmail.com
           </Text>
 
           <Text color="gray.400" fontSize={['sm', 'md']} fontWeight="bold">
             Company:
           </Text>
-          <Text fontSize="lg" fontWeight="600" mb="6">
+          <Text fontSize={['md', 'lg']} fontWeight="600" mb="6">
             Lambda School
           </Text>
 
           <Box
             mb="16"
             mt="10"
-            w={['95%', '1/2']}
+            w={['100%', '1/2']}
             maxW="xl"
             wordBreak="break-word"
           >
             <Text
               mb="1"
               color="gray.400"
-              fontSize={['md', 'lg']}
+              fontSize={['sm', 'md', 'lg']}
               fontWeight="bold"
             >
               Recommendation:
             </Text>
-            <Text fontSize="xl" fontWeight="600" mb="6">
+            <Text fontSize={['md', 'lg']} fontWeight="600" mb="6">
               "This is my super awesome recommendation!
               bhfjgdivhkerjfbdhivjfbvihlfdbvujhbdfvbleudfibkvedfhugvbekrdf
               vlhbrefdvrfdbhviberfkdbvidbg."
@@ -131,7 +131,7 @@ export default function Recommendation() {
           fontWeight="500"
           bg="green.100"
           color="green.600"
-          mt="8"
+          mt="4"
           fontSize="sm"
           borderRadius="xl"
         >
