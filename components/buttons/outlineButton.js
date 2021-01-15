@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Button, Box, ArrowBackIcon } from '@chakra-ui/react'
 
-export default function OutlineButton({ text, href, as }) {
+export default function OutlineButton({ text, href, as, callback }) {
   return (
     <Box d="flex" alignItems="center" justifyContent="center" w="100%" mt="7">
       <Link href={href} as={as}>

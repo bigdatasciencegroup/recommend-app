@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Button, Box, ArrowFowardIcon } from '@chakra-ui/react'
 
-export default function SolidButton({ text, href, as }) {
+export default function SolidButton({ text, href, as, callback }) {
   return (
     <Box d="flex" justifyContent="center" alignItems="center" mt="8" w="100%">
       <Link href={href} as={as}>

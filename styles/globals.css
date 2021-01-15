@@ -19,3 +19,8 @@ a {
 .blue-underline {
   border-bottom: 4px solid #29b6f6;
 }
+
+.blue-text {
+  color: #29b6f6;
+  font-size: 1.6rem;
+}

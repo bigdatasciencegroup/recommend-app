@@ -25,14 +25,14 @@ export default function Home() {
           mx="2"
           letterSpacing="1"
           fontSize={['xl', '2xl']}
-          fontWeight="600"
-          color="gray.600"
+          fontWeight="700"
+          color="gray.500"
           textAlign="left"
         >
-          We make it super easy to <span className="blue-underline">give</span>,{' '}
-          <span className="blue-underline">recieve</span> and{' '}
-          <span className="blue-underline">share</span> the good things people
-          have to say about each other
+          We make it super easy to <span className="blue-text">give</span>,{' '}
+          <span className="blue-text">recieve</span> and{' '}
+          <span className="blue-text">share</span> the good things people say
+          about each other
         </Text>
       </Box>
       <HomeSVG />

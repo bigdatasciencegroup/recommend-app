@@ -54,18 +54,29 @@ export default function Create() {
   return (
     <>
       <Layout>
-        <Heading
-          fontFamily="Montserrat"
+        <Box
+          mb="4"
+          d="flex"
+          flexDirection="column"
+          // alignItems="center"
+          // justifyContent="flex-start"
+
           alignSelf="flex-start"
-          as="h1"
-          size="xl"
         >
-          Create a recommendation
-        </Heading>
-        <Heading fontFamily="Montserrat" as="h2" my="2rem" size="md">
-          Fill out your information so that the person recieving the{' '}
-          recommendation knows who sent it
-        </Heading>
+          <Text fontSize={['2xl', '3xl']} fontWeight="700">
+            Create a Recommendation
+          </Text>
+          <Text
+            as="h2"
+            my="4"
+            fontSize={['lg', 'xl', '2xl']}
+            fontWeight="600"
+            color="gray.500"
+          >
+            Fill out your information so that the person recieving the{' '}
+            recommendation knows who sent it
+          </Text>
+        </Box>
 
         <Stack spacing="10" w="full" fontSize="lg">
           {/* image upload */}

@@ -11,13 +11,14 @@ export default function Layout({ children, center }) {
 
       <Container
         fontFamily="Montserrat"
+        fontWeight="600"
         pt="28"
         d="flex"
         margin="0 auto"
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        maxW="xl"
+        maxW="2xl"
         color="gray.600"
       >
         {children}
