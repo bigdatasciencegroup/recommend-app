@@ -20,8 +20,9 @@ export default function Share() {
     <Layout>
       <CustomHeading
         title="Share with family, friends and co-workers"
-        description="Show your appreceiation for your family, friends, teamates, co-workers, etc. By sharing your recommandation on social media,
-        email or via link"
+        w="200px"
+        description="Show your appreceiation for your family, friends, teamates, co-workers, etc. By sharing your recommandation via social media,
+        email or link"
       />
       <Stack mt="16" spacing="8" my="16" w={['90%', '75%']}>
         <Button

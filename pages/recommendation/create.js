@@ -57,7 +57,7 @@ export default function Create() {
       <Layout>
         <CustomHeading
           title="Create a Recommendation"
-          description="Fill out your information so that the person recieving the recommendation knows who sent it"
+          description="Fill out your information so that the person recieving the recommendation knows who you are."
         />
         {/* <Box
           mb="4"
@@ -131,7 +131,7 @@ export default function Create() {
 
             {/* email */}
             <FormControl isInvalid={errors.email} isRequired>
-              <FormLabel fontWeight="bold" mt="4" htmlFor="name">
+              <FormLabel fontWeight="bold" mt="6" htmlFor="name">
                 Email
               </FormLabel>
               <Input
@@ -162,7 +162,7 @@ export default function Create() {
                 type="textarea"
                 name="recommendation"
                 fontWeight="500"
-                placeholder="Jane has been a pleasure to work with. I would absolutely love to work with her again! 😁"
+                placeholder="Jane has been a pleasure to work with. I would absolutely love to work with her again!"
                 border="2px solid #333"
                 boxShadow="xs"
                 // onChange={handleRecommendationChange}
@@ -179,7 +179,7 @@ export default function Create() {
               <FormLabel
                 htmlFor="make-private"
                 fontWeight="600"
-                fontSize={['lg', 'xl', '2xl']}
+                fontSize={['md', 'xl', '2xl']}
               >
                 Make recommendation private?
               </FormLabel>
@@ -207,8 +207,11 @@ export default function Create() {
                   </AlertDialogHeader>
 
                   <AlertDialogBody>
-                    Are you sure? Private recommendations can only be seen by
-                    you and who ever you share them with.
+                    Private recommendations can only be seen by you and who ever
+                    you share them with.
+                    <Text mt="2" d="block">
+                      Are you sure?
+                    </Text>
                   </AlertDialogBody>
 
                   <AlertDialogFooter>

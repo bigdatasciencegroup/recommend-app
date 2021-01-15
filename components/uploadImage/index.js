@@ -30,7 +30,7 @@ export default function UploadImage(postRequestUrl) {
       const formData = new FormData()
       formData.append('image', image.raw)
 
-      await fetch(`${postRequestUrl || 'https://picsum.photos'}`, {
+      await fetch(`${postRequestUrl || ''}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -49,7 +49,7 @@ export default function UploadImage(postRequestUrl) {
       justifyContent="center"
       alignItems="center"
       flexDirection="column"
-      mt="1rem"
+      mt="16"
     >
       <label htmlFor="upload-button">
         {image.preview ? (
@@ -60,46 +60,46 @@ export default function UploadImage(postRequestUrl) {
             flexDirection="column"
           >
             <Avatar
-              cursor
-              boxShadow="2xl"
-              size="2xl"
+              cursor="pointer"
+              boxShadow="xl"
+              w="200px"
+              h="200px"
               name="JD"
               src={image.preview}
             />{' '}
             <Tag
               fontSize="md"
-              color="gray.700"
-              boxShadow="sm"
+              color="white"
+              boxShadow="md"
               letterSpacing=".2"
-              bg="blue.200"
+              bg="blue.300"
               fontWeight="bold"
               py="2"
-              px="4"
+              px="8"
               borderRadius="full"
               whiteSpace="nowrap"
               textAlign="center"
               my="4"
             >
-              Change Image
+              Change
             </Tag>
           </Box>
         ) : (
           <Box
             bg="gray.100"
             color="gray.400"
-            w="13rem"
-            h="11rem"
-            p="4"
+            w={['1/2', 'full']}
+            h={['1/2', 'full']}
+            p="6"
             cursor="pointer"
             border="4px dashed #29B6F6"
             _hover={{ color: 'gray.500' }}
-            borderRadius="1rem"
+            borderRadius="xl"
           >
             <span
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                marginTop: '1.5rem',
                 alignItems: 'center',
                 flexDirection: 'column'
               }}

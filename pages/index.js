@@ -44,11 +44,11 @@ export default function Home() {
             fontWeight="bold"
             fontSize="lg"
             color="white"
-            py="2"
-            px="4"
+            py="4"
+            px="6"
             w="full"
           >
-            Let's get started
+            Give a recommendation
           </Button>
         </a>
       </Link>

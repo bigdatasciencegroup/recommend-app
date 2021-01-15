@@ -114,26 +114,16 @@ const Navbar = (props) => {
                 <MenuItems>Home</MenuItems>
               </a>
             </Link>
-            <Link href="/recommendation/[id]" as={`/recommendation/${id}`}>
+            {/* <Link href="/profile" as={`/profile`}>
               <a>
-                <MenuItems>Recommendations</MenuItems>
+                <MenuItems>Profile</MenuItems>
               </a>
-            </Link>
+            </Link> */}
             <Link href="/recommendation/create" as="/recommendation/create">
               <a>
-                <MenuItems>Create</MenuItems>
+                <MenuItems>Give a Recommandation</MenuItems>
               </a>
             </Link>
-            {/* <Link href="/blog" as="/blog">
-              <a>
-                <MenuItems>Blog</MenuItems>
-              </a>
-            </Link> */}
-            {/* <Link href="/resources" as="/resources">
-              <a>
-                <MenuItems>Resources</MenuItems>
-              </a>
-            </Link> */}
           </Box>
         </Box>
       </Box>
@@ -240,23 +230,23 @@ const Navbar = (props) => {
                     </a>
                   </Link>
                 </ListItem>
-                <ListItem py="2">
+                {/* <ListItem py="2">
                   <Link
-                    href="/recommendation/[id]"
-                    as={`/recommendation/${id}`}
+                    href="/profile"
+                    as={`/profile`}
                   >
                     <a>
-                      <MenuItems>Recommendations</MenuItems>
+                      <MenuItems>Profile</MenuItems>
                     </a>
                   </Link>
-                </ListItem>
+                </ListItem> */}
                 <ListItem py="2">
                   <Link
                     href="/recommendation/create"
                     as="/recommendation/create"
                   >
                     <a>
-                      <MenuItems>Create</MenuItems>
+                      <MenuItems>Give a Recommandation</MenuItems>
                     </a>
                   </Link>
                 </ListItem>
