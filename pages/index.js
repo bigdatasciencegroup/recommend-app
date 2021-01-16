@@ -33,6 +33,7 @@ export default function Home() {
           about each other
         </Text>
       </Box>
+
       <HomeSVG />
 
       <Link href="/recommendation/create">

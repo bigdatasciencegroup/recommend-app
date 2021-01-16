@@ -40,7 +40,7 @@ export default function Create() {
   const router = useRouter()
   const { id } = router.query
   const { handleSubmit, errors, register, formState } = useForm()
-  const [isPrivate, setIsPrivate] = React.useState(null)
+  const [isPrivate, setIsPrivate] = React.useState(false)
   const [confirmPrivacy, setConfirmPrivacy] = React.useState(false)
 
   const [isOpen, setIsOpen] = React.useState(false)
@@ -48,8 +48,24 @@ export default function Create() {
   const onClose = () => setIsOpen(false)
   const cancelRef = React.useRef()
 
-  const handleChange = (e) => {
-    setIsPrivate(e.target.checked)
+  const alertValue = (value) => {
+    let i
+    i = setTimeout(() => alertValue(value), 3000)
+
+    const alertValue = () => {
+      alert(i)
+    }
+
+    return i
+  }
+
+  const onToggle = (e) => {
+    // if (isPrivate === true) {
+    //   setIsOpen(false)
+    // }
+    setIsPrivate(e.target.value)
+    alertValue(e.target.value)
+    open
   }
 
   return (
@@ -59,30 +75,6 @@ export default function Create() {
           title="Create a Recommendation"
           description="Fill out your information so that the person recieving the recommendation knows who you are."
         />
-        {/* <Box
-          mb="4"
-          d="flex"
-          flexDirection="column"
-          // alignItems="center"
-          // justifyContent="flex-start"
-
-          alignSelf="flex-start"
-        >
-          <Text fontSize={['2xl', '3xl']} fontWeight="700">
-            Create a Recommendation
-          </Text>
-          <Text
-            as="h2"
-            my="4"
-            fontSize={['lg', 'xl', '2xl']}
-            fontWeight="600"
-            color="gray.500"
-          >
-            Fill out your information so that the person recieving the{' '}
-            recommendation knows who sent it
-          </Text>
-        </Box> */}
-
         <Stack spacing="10" w="full" fontSize="lg">
           {/* image upload */}
           <UploadImage postRequestUrl="#" />
@@ -130,7 +122,7 @@ export default function Create() {
             </FormControl>
 
             {/* email */}
-            <FormControl isInvalid={errors.email} isRequired>
+            <FormControl isInvalid={!errors.email} isRequired>
               <FormLabel fontWeight="bold" mt="6" htmlFor="name">
                 Email
               </FormLabel>
@@ -151,7 +143,7 @@ export default function Create() {
             </FormControl>
 
             {/* recommendation */}
-            <FormControl isInvalid={errors.recommendation} isRequired>
+            <FormControl isInvalid={!errors.recommendation} isRequired>
               <FormLabel fontWeight="bold" mt="10" htmlFor="recommendation">
                 Recommendation
               </FormLabel>
@@ -184,8 +176,9 @@ export default function Create() {
                 Make recommendation private?
               </FormLabel>
               <Switch
-                isDisabled={confirmPrivacy === false ? 'false' : 'true'}
-                onClick={() => setIsOpen(true)}
+                isDisabled={isPrivate ? false : true}
+                onClick={() => onToggle}
+                // onChange={onToggle}
                 value={isPrivate}
                 ml="auto"
                 pr="2rem"
@@ -195,40 +188,40 @@ export default function Create() {
               />
             </FormControl>
 
-            <AlertDialog
-              isOpen={isOpen}
-              leastDestructiveRef={cancelRef}
-              onClose={onClose}
-            >
-              <AlertDialogOverlay>
-                <AlertDialogContent>
-                  <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                    Private Recommendations
-                  </AlertDialogHeader>
+            {isPrivate ? (
+              <AlertDialog
+                isOpen={isOpen}
+                leastDestructiveRef={cancelRef}
+                onClose={onClose}
+              >
+                <AlertDialogOverlay>
+                  <AlertDialogContent>
+                    <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                      Private Recommendations
+                    </AlertDialogHeader>
 
-                  <AlertDialogBody>
-                    Private recommendations can only be seen by you and who ever
-                    you share them with.
-                    <Text mt="2" d="block">
-                      Are you sure?
-                    </Text>
-                  </AlertDialogBody>
+                    <AlertDialogBody>
+                      Private recommendations can only be seen by you and who
+                      ever you share them with.
+                      <Text mt="2" d="block">
+                        Are you sure?
+                      </Text>
+                    </AlertDialogBody>
 
-                  <AlertDialogFooter>
-                    <Button ref={cancelRef} onClick={onClose}>
-                      Cancel
-                    </Button>
-                    <Button
-                      colorScheme="blue"
-                      onClick={(e) => handleChange(e)}
-                      ml={3}
-                    >
-                      Make Private
-                    </Button>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialogOverlay>
-            </AlertDialog>
+                    <AlertDialogFooter>
+                      <Button ref={cancelRef} onClick={onClose}>
+                        Cancel
+                      </Button>
+                      <Button colorScheme="blue" onClick={onToggle} ml={3}>
+                        Make Private
+                      </Button>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialogOverlay>
+              </AlertDialog>
+            ) : (
+              ''
+            )}
 
             <SolidButton
               // isLoading={formState.isSubmitting}
