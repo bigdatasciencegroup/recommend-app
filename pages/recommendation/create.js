@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {
@@ -25,10 +25,13 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogContent,
-  AlertDialogOverlay
+  AlertDialogOverlay,
+  AspectRatio,
+  AspectRatioProps
 } from '@chakra-ui/react'
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import { useForm } from 'react-hook-form'
+import { useReactMediaRecorder, ReactMediaRecorder } from 'react-media-recorder'
 
 import Layout from '../../components/layout'
 import UploadImage from '../../components/uploadImage'
@@ -43,10 +46,11 @@ export default function Create() {
   const [isPrivate, setIsPrivate] = React.useState(false)
   const [confirmPrivacy, setConfirmPrivacy] = React.useState(false)
 
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const open = () => setIsOpen(!isOpen)
   const onClose = () => setIsOpen(false)
-  const cancelRef = React.useRef()
+  const cancelRef = useRef()
+  const videoRef = useRef()
 
   const alertValue = (value) => {
     let i
@@ -68,21 +72,73 @@ export default function Create() {
     open
   }
 
+  const {
+    status,
+    startRecording,
+    stopRecording,
+    mediaBlobUrl
+  } = useReactMediaRecorder({ video: true })
+
+  const VideoPreview = ({ stream }) => {
+    // const videoRef = useRef < HTMLVideoElement > null
+
+    useEffect(() => {
+      if (videoRef.current && stream) {
+        videoRef.current.srcObject = stream
+      }
+    }, [stream])
+    if (!stream) {
+      return null
+    }
+    return <video ref={videoRef} width={500} height={500} autoPlay controls />
+  }
+
   return (
     <>
       <Layout>
         <CustomHeading
-          title="Create a Recommendation"
-          description="Fill out your information so that the person recieving the recommendation knows who you are."
+          title="Create a Introduction"
+          description="Record an introduction video asking someone for a recommendation or reference."
         />
-        <Stack spacing="10" w="full" fontSize="lg">
-          {/* image upload */}
+
+        <Box maxW="600px" ratio={1} mb="36">
+          {/* <iframe title="naruto" src={mediaBlobUrl} allowFullScreen /> */}
+          <Text color="gray.500">
+            Status: <span className="blue-text">{status}</span>
+          </Text>
+          {status === 'recording' ? (
+            <ReactMediaRecorder
+              video
+              render={({ previewStream }) => {
+                return <VideoPreview stream={previewStream} />
+              }}
+            />
+          ) : (
+            <video src={mediaBlobUrl} controls autoplay loop />
+          )}
+          <Button
+            mb="6"
+            m="4"
+            w="55%"
+            bg="red.400"
+            color="white"
+            _hover={{ bg: 'red.600' }}
+            onClick={startRecording}
+          >
+            Start Recording
+          </Button>
+          <Button d="block" onClick={stopRecording}>
+            Stop Recording
+          </Button>
+          {/* <Button mb="16">Get tips to create a great video</Button> */}
+        </Box>
+
+        {/* OLD UI / Backup */}
+        {/* <Stack spacing="10" w="full" fontSize="lg">
           <UploadImage postRequestUrl="#" />
 
-          {/* recommendation form */}
           <form onSubmit={handleSubmit}>
             <FormControl isInvalid={errors.name}>
-              {/* name */}
               <FormLabel fontWeight="bold" mt="4" htmlFor="name">
                 First name
               </FormLabel>
@@ -101,7 +157,6 @@ export default function Create() {
               </FormErrorMessage>
             </FormControl>
 
-            {/* company */}
             <FormControl isInvalid={errors.company}>
               <FormLabel fontWeight="bold" mt="4" htmlFor="company">
                 Company
@@ -121,7 +176,6 @@ export default function Create() {
               </FormErrorMessage>
             </FormControl>
 
-            {/* email */}
             <FormControl isInvalid={!errors.email} isRequired>
               <FormLabel fontWeight="bold" mt="6" htmlFor="name">
                 Email
@@ -142,7 +196,6 @@ export default function Create() {
               </FormErrorMessage>
             </FormControl>
 
-            {/* recommendation */}
             <FormControl isInvalid={!errors.recommendation} isRequired>
               <FormLabel fontWeight="bold" mt="10" htmlFor="recommendation">
                 Recommendation
@@ -165,7 +218,6 @@ export default function Create() {
               </FormErrorMessage>
             </FormControl>
 
-            {/* Make private */}
             <Divider h="2rem" />
             <FormControl mt="6" mb="24" display="flex" alignItems="center">
               <FormLabel
@@ -231,7 +283,7 @@ export default function Create() {
               as={`/recommendation/${id}`}
             />
           </form>
-        </Stack>
+        </Stack> */}
 
         <OutlineButton text="Back home" href="/" as="/" />
       </Layout>
