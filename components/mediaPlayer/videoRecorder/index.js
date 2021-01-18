@@ -6,14 +6,14 @@ const VideoRecorder = () => {
     startRecording,
     stopRecording,
     mediaBlobUrl
-  } = useReactMediaRecorder({ video: true })
+  } = useReactMediaRecorder({ screen: true })
 
   return (
     <div>
       <p>{status}</p>
       <button onClick={startRecording}>Start Recording</button>
       <button onClick={stopRecording}>Stop Recording</button>
-      <video src={mediaBlobUrl} controls autoplay loop />
+      <video src={mediaBlobUrl} controls muted={true} autoplay loop />
     </div>
   )
 }

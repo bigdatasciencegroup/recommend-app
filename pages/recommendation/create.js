@@ -72,6 +72,7 @@ export default function Create() {
       return null
     }
     return <video ref={videoRef} width={500} height={500} autoPlay controls />
+    // return <VideoPlayer />
   }
   // end video
 
