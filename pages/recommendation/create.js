@@ -40,6 +40,11 @@ import UploadImage from '../../components/uploadImage'
 import SolidButton from '../../components/buttons/solidButton'
 import OutlineButton from '../../components/buttons/outlineButton'
 import CustomHeading from '../../components/heading/customHeading'
+import {
+  VideoPlayer,
+  Duration,
+  VideoRecorder
+} from '../../components/mediaPlayer/index'
 
 export default function Create() {
   const router = useRouter()
@@ -50,145 +55,25 @@ export default function Create() {
 
   const [isOpen, setIsOpen] = useState(false)
 
-  // for react player
-  const [url, setUrl] = useState(null)
-  const [pip, setPip] = useState(false)
-  const [playing, setPlaying] = useState(true)
-  const [controls, setControls] = useState(false)
-  const [light, setLight] = useState(false)
-  const [volume, setVolume] = useState(0.8)
-  const [muted, setMuted] = useState(false)
-  const [played, setPlayed] = useState(0)
-  const [loaded, setLoadded] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const [playbackRate, setPlaybackRate] = useState(1.0)
-  const [loop, setLoop] = useState(false)
-  const [seeking, setSeeking] = useState(null)
-  // const [duration, setDuration] = useState(null)
-
-  // load video player
-  const load = (url) => {
-    url, setPlayed(0)
-    setLoadded(0)
-    setPip(false)
-  }
-
-  // load video player methods
-  const handlePlayPause = () => {
-    setPlaying(!playing)
-  }
-
-  // stop player
-  const handleStop = () => {
-    setUrl(null)
-    setPlaying(false)
-  }
-
-  // toogle controls
-  const handleToggleControls = () => {
-    setControls(!coltrols)
-    setUrl(null)
-    const url = () => load(url)
-    url
-  }
-
-  // toggle light
-  const handleToggleLight = () => {
-    setLight(!light)
-  }
-
-  // toogle loop
-  const handleToggleLoop = () => {
-    setLoop(!loop)
-  }
-
-  // change volume level
-  const handleVolumeChange = (e) => {
-    setVolume(parseFloat(e.target.value))
-  }
-
-  // mute / unmute
-  const handleToggleMuted = () => {
-    setMuted(!muted)
-  }
-
-  // playback rate
-  const handleSetPlaybackRate = (e) => {
-    setPlaybackRate(parseFloat(e.target.value))
-  }
-
-  // toogle picture-in-picture
-  const handleTogglePIP = () => {
-    setPip(!pip)
-  }
-
-  // play video
-  const handlePlay = () => {
-    console.log('onPlay')
-    setPlaying(true)
-  }
-
-  // enable picture-in-picture
-  const handleEnablePIP = () => {
-    console.log('onEnablePIP')
-    setPip(true)
-  }
-
-  // diable picture-in-picture
-  const handleDisablePIP = () => {
-    console.log('onDisablePIP')
-    setPip(false)
-  }
-
-  // pause video
-  const handlePause = () => {
-    console.log('onPause')
-    setPlaying(false)
-  }
-
-  const handleSeekMouseDown = (e) => {
-    setSeeking(true)
-  }
-
-  const handleSeekChange = (e) => {
-    setPlayed(parseFloat(e.target.value))
-  }
-
-  const handleSeekMouseUp = (e) => {
-    setSeeking(false)
-    player.setTo(parseFloat(e.taget.value))
-  }
-
-  const handleProgress = (seeking) => {
-    console.log('onProgress', seeking)
-    if (seeking) {
-      setSeeking(seeking)
-    }
-  }
-
-  const handleEnded = () => {
-    console.log('onEnded')
-    setPlaying(playing.loop)
-  }
-
-  const handleDuration = (duration) => {
-    console.log('onDuration', duration)
-    setDuration(duration)
-  }
-
-  const handleClickFullscreen = () => {
-    screenfull.request(findDOMNode(player))
-  }
-
-  const renderLoadButton = (url, label) => {
-    return <button onClick={() => load(url)}>{label}</button>
-  }
-
   const open = () => setIsOpen(!isOpen)
   const onClose = () => setIsOpen(false)
   const cancelRef = useRef()
-  const videoRef = useRef()
-  const player = videoRef
+
+  // video
+  const VideoPreview = ({ stream }) => {
+    const videoRef = useRef(null)
+
+    useEffect(() => {
+      if (videoRef.current && stream) {
+        videoRef.current.srcObject = stream
+      }
+    }, [stream])
+    if (!stream) {
+      return null
+    }
+    return <video ref={videoRef} width={500} height={500} autoPlay controls />
+  }
+  // end video
 
   const alertValue = (value) => {
     let i
@@ -210,29 +95,6 @@ export default function Create() {
     open
   }
 
-  const {
-    status,
-    startRecording,
-    stopRecording,
-    mediaBlobUrl
-  } = useReactMediaRecorder({
-    video: true
-  })
-
-  const VideoPreview = ({ stream }) => {
-    const videoRef = useRef(null)
-
-    useEffect(() => {
-      if (videoRef.current && stream) {
-        videoRef.current.srcObject = stream
-      }
-    }, [stream])
-    if (!stream) {
-      return null
-    }
-    return <video ref={videoRef} width={500} height={500} autoPlay controls />
-  }
-
   return (
     <>
       <Layout>
@@ -240,262 +102,14 @@ export default function Create() {
           title="Create a Introduction"
           description="Record an introduction video"
         /> */}
-        <Tag
-          filter="drop-shadow(1 0 0.75rem blue.300)"
-          mb="4"
-          px="4"
-          py="2"
-          borderRadius="full"
-          color="gray.500"
-        >
-          Recording Status: <span className="blue-text"> {status} </span>
-        </Tag>
 
-        <Box
-          w="full"
-          postion="fixed"
-          top="0"
-          left="0"
-          borderRadius="xl"
-          mb="16"
-        >
-          {/* {status === 'recording' && (
-            <Box rounded="xl">
-              <ReactMediaRecorder
-                video
-                render={({ previewStream }) => {
-                  return <VideoPreview stream={previewStream} />
-                }}
-              />
-            </Box>
-          )}
-        */}
-
-          {/* {status === 'idle' && (
-            <Box borderRadius="xl" width={['100vw', '75vw', '50vw']}>
-              <ReactPlayer
-                ref={videoRef}
-                className="react-player"
-                width="100%"
-                height="100%"
-                url={url}
-                pip={pip}
-                playing={playing}
-                controls={controls}
-                light={light}
-                loop={loop}
-                playbackRate={playbackRate}
-                volume={volume}
-                muted={muted}
-                onReady={() => console.log('onReady')}
-                onStart={() => console.log('onStart')}
-                onPlay={handlePlay}
-                onEnablePIP={handleEnablePIP}
-                onDisablePIP={handleDisablePIP}
-                onPause={handlePause}
-                onBuffer={() => console.log('onBuffer')}
-                onSeek={(e) => console.log('onSeek', e)}
-                onEnded={handleEnded}
-                onError={(e) => console.log('onError', e)}
-                onProgress={handleProgress}
-                onDuration={handleDuration}
-              />
-            </Box>
-          )} */}
-
-          {status === 'recording' ? (
-            <Box rounded="xl" width={['100vw', '75vw', '50vw']}>
-              <ReactMediaRecorder
-                video
-                render={({ previewStream }) => {
-                  return (
-                    <Box>
-                      <VideoPreview stream={previewStream} />
-                    </Box>
-                  )
-                }}
-              />
-            </Box>
-          ) : (
-            <Box rounded="xl">
-              <ReactPlayer
-                ref={videoRef}
-                className="react-player"
-                width="100%"
-                height="100%"
-                url={url}
-                pip={pip}
-                playing={playing}
-                controls={controls}
-                // light={light}
-                // loop={loop}
-                // playbackRate={playbackRate}
-                // volume={volume}
-                // muted={muted}
-                // onReady={() => console.log('onReady')}
-                // onStart={() => console.log('onStart')}
-                // onPlay={handlePlay}
-                // onEnablePIP={handleEnablePIP}
-                // onDisablePIP={handleDisablePIP}
-                // onPause={handlePause}
-                // onBuffer={() => console.log('onBuffer')}
-                // onSeek={(e) => console.log('onSeek', e)}
-                // onEnded={handleEnded}
-                // onError={(e) => console.log('onError', e)}
-                // onProgress={handleProgress}
-                // onDuration={handleDuration}
-              />
-              <table>
-                <tbody>
-                  <tr>
-                    <th>Controls</th>
-                    <td>
-                      <button onClick={handleStop}>Stop</button>
-                      <button onClick={handlePlayPause}>
-                        {playing ? 'Pause' : 'Play'}
-                      </button>
-                      <button onClick={handleClickFullscreen}>
-                        Fullscreen
-                      </button>
-                      {light && (
-                        <button onClick={() => player.showPreview}>
-                          Show preview
-                        </button>
-                      )}
-                      {ReactPlayer.canEnablePIP(url) && (
-                        <button onClick={handleTogglePIP}>
-                          {pip ? 'Disable PiP' : 'Enable PiP'}
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Speed</th>
-                    <td>
-                      <button onClick={handleSetPlaybackRate} value={1}>
-                        1x
-                      </button>
-                      <button onClick={handleSetPlaybackRate} value={1.5}>
-                        1.5x
-                      </button>
-                      <button onClick={handleSetPlaybackRate} value={2}>
-                        2x
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Seek</th>
-                    <td>
-                      <input
-                        type="range"
-                        min={0}
-                        max={0.999999}
-                        step="any"
-                        value={played}
-                        onMouseDown={handleSeekMouseDown}
-                        onChange={handleSeekChange}
-                        onMouseUp={handleSeekMouseUp}
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Volume</th>
-                    <td>
-                      <input
-                        type="range"
-                        min={0}
-                        max={1}
-                        step="any"
-                        value={volume}
-                        onChange={handleVolumeChange}
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>
-                      <label htmlFor="controls">Controls</label>
-                    </th>
-                    <td>
-                      <input
-                        id="controls"
-                        type="checkbox"
-                        checked={controls}
-                        onChange={handleToggleControls}
-                      />
-                      <em>&nbsp; Requires player reload</em>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>
-                      <label htmlFor="muted">Muted</label>
-                    </th>
-                    <td>
-                      <input
-                        id="muted"
-                        type="checkbox"
-                        checked={muted}
-                        onChange={handleToggleMuted}
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>
-                      <label htmlFor="loop">Loop</label>
-                    </th>
-                    <td>
-                      <input
-                        id="loop"
-                        type="checkbox"
-                        checked={loop}
-                        onChange={handleToggleLoop}
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>
-                      <label htmlFor="light">Light mode</label>
-                    </th>
-                    <td>
-                      <input
-                        id="light"
-                        type="checkbox"
-                        checked={light}
-                        onChange={handleToggleLight}
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Played</th>
-                    <td>
-                      <progress max={1} value={played} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Loaded</th>
-                    <td>
-                      <progress max={1} value={loaded} />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </Box>
-          )}
-        </Box>
-        <Button
-          mb="4"
-          p="8"
-          // mt="4"
-          w="90%"
-          bg="red.400"
-          color="white"
-          _hover={{ bg: 'red.600' }}
-          onClick={
-            // {(status === 'idle' || 'stopped') ? startRecording : stopRecording}
-            status === ('idle' || 'stopped') ? startRecording : stopRecording
-          }
-        >
-          {status === 'recording' ? 'Stop Recording' : 'Start Recording'}
-        </Button>
+        <VideoRecorder
+          video
+          render={({ previewStream }) => {
+            return <VideoPreview stream={previewStream} />
+          }}
+        />
+        <VideoPlayer />
 
         {/* OLD UI / Backup */}
         {/* <Stack spacing="10" w="full" fontSize="lg">
