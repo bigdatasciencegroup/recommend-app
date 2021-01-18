@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, Fragment } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {
@@ -16,6 +16,7 @@ import {
   Select,
   Textarea,
   Text,
+  Tag,
   Heading,
   Avatar,
   Switch,
@@ -32,6 +33,7 @@ import {
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import { useForm } from 'react-hook-form'
 import { useReactMediaRecorder, ReactMediaRecorder } from 'react-media-recorder'
+import ReactPlayer from 'react-player'
 
 import Layout from '../../components/layout'
 import UploadImage from '../../components/uploadImage'
@@ -80,7 +82,7 @@ export default function Create() {
   } = useReactMediaRecorder({ video: true })
 
   const VideoPreview = ({ stream }) => {
-    // const videoRef = useRef < HTMLVideoElement > null
+    const videoRef = useRef(null)
 
     useEffect(() => {
       if (videoRef.current && stream) {
@@ -95,43 +97,87 @@ export default function Create() {
 
   return (
     <>
-      <Layout>
-        <CustomHeading
+      <Layout bg="black">
+        {/* <CustomHeading
           title="Create a Introduction"
-          description="Record an introduction video asking someone for a recommendation or reference."
-        />
+          description="Record an introduction video"
+        /> */}
+        <Tag mb="4" px="4" py="2" borderRadius="full" color="gray.500">
+          Recording Status: <span className="blue-text"> {status} </span>
+        </Tag>
 
-        <Box maxW="600px" ratio={1} mb="36">
-          {/* <iframe title="naruto" src={mediaBlobUrl} allowFullScreen /> */}
-          <Text color="gray.500">
-            Status: <span className="blue-text">{status}</span>
-          </Text>
-          {status === 'recording' ? (
-            <ReactMediaRecorder
-              video
-              render={({ previewStream }) => {
-                return <VideoPreview stream={previewStream} />
-              }}
-            />
-          ) : (
-            <video src={mediaBlobUrl} controls autoplay loop />
+        <Box
+          w="100%"
+          postion="fixed"
+          top="0"
+          left="0"
+          borderRadius="xl"
+          mb="16"
+        >
+          {/* {status === 'recording' && (
+            <Box rounded="xl">
+              <ReactMediaRecorder
+                video
+                render={({ previewStream }) => {
+                  return <VideoPreview stream={previewStream} />
+                }}
+              />
+            </Box>
           )}
-          <Button
-            mb="6"
-            m="4"
-            w="55%"
-            bg="red.400"
-            color="white"
-            _hover={{ bg: 'red.600' }}
-            onClick={startRecording}
-          >
-            Start Recording
-          </Button>
-          <Button d="block" onClick={stopRecording}>
-            Stop Recording
-          </Button>
-          {/* <Button mb="16">Get tips to create a great video</Button> */}
+
+          {status === 'idle' && (
+            <Box>
+              <ReactPlayer
+                src={mediaBlobUrl}
+                poster={videoRef}
+                controls
+                autoplay
+                loop
+              />
+            </Box>
+          )} */}
+
+          {status === 'recording' ? (
+            <Fragment>
+              <Box rounded="xl">
+                <ReactMediaRecorder
+                  video
+                  render={({ previewStream }) => {
+                    return <VideoPreview stream={previewStream} />
+                  }}
+                />
+              </Box>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <Box rounded="xl">
+                <Fragment>
+                  <ReactPlayer
+                    muted
+                    autoPlay={true}
+                    controls
+                    url={mediaBlobUrl}
+                  />
+                </Fragment>
+              </Box>
+            </Fragment>
+          )}
         </Box>
+        <Button
+          mb="4"
+          p="8"
+          // mt="4"
+          w="90%"
+          bg="red.400"
+          color="white"
+          _hover={{ bg: 'red.600' }}
+          onClick={
+            // {(status === 'idle' || 'stopped') ? startRecording : stopRecording}
+            status === ('idle' || 'stopped') ? startRecording : stopRecording
+          }
+        >
+          {status === 'recording' ? 'Stop Recording' : 'Start Recording'}
+        </Button>
 
         {/* OLD UI / Backup */}
         {/* <Stack spacing="10" w="full" fontSize="lg">
