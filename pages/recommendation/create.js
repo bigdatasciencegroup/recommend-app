@@ -216,9 +216,7 @@ export default function Create() {
     stopRecording,
     mediaBlobUrl
   } = useReactMediaRecorder({
-    video: {
-      MediaTrackConstraints: {}
-    }
+    video: true
   })
 
   const VideoPreview = ({ stream }) => {
@@ -273,7 +271,7 @@ export default function Create() {
           )}
         */}
 
-          {status === 'idle' && (
+          {/* {status === 'idle' && (
             <Box borderRadius="xl" width={['100vw', '75vw', '50vw']}>
               <ReactPlayer
                 ref={videoRef}
@@ -303,7 +301,7 @@ export default function Create() {
                 onDuration={handleDuration}
               />
             </Box>
-          )}
+          )} */}
 
           {status === 'recording' ? (
             <Box rounded="xl" width={['100vw', '75vw', '50vw']}>
@@ -320,6 +318,33 @@ export default function Create() {
             </Box>
           ) : (
             <Box rounded="xl">
+              <ReactPlayer
+                ref={videoRef}
+                className="react-player"
+                width="100%"
+                height="100%"
+                url={url}
+                pip={pip}
+                playing={playing}
+                controls={controls}
+                // light={light}
+                // loop={loop}
+                // playbackRate={playbackRate}
+                // volume={volume}
+                // muted={muted}
+                // onReady={() => console.log('onReady')}
+                // onStart={() => console.log('onStart')}
+                // onPlay={handlePlay}
+                // onEnablePIP={handleEnablePIP}
+                // onDisablePIP={handleDisablePIP}
+                // onPause={handlePause}
+                // onBuffer={() => console.log('onBuffer')}
+                // onSeek={(e) => console.log('onSeek', e)}
+                // onEnded={handleEnded}
+                // onError={(e) => console.log('onError', e)}
+                // onProgress={handleProgress}
+                // onDuration={handleDuration}
+              />
               <table>
                 <tbody>
                   <tr>
