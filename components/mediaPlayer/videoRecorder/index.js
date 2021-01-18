@@ -6,7 +6,7 @@ const VideoRecorder = () => {
     startRecording,
     stopRecording,
     mediaBlobUrl
-  } = useReactMediaRecorder({ screen: true })
+  } = useReactMediaRecorder({ video: true })
 
   return (
     <div>
