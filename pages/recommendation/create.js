@@ -28,7 +28,8 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
   AspectRatio,
-  AspectRatioProps
+  AspectRatioProps,
+  FormHelperText
 } from '@chakra-ui/react'
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import { useForm } from 'react-hook-form'
@@ -46,74 +47,129 @@ import {
   VideoRecorder
 } from '../../components/mediaPlayer/index'
 
+// wizard
+import { useWizard } from 'react-wizard-primitive'
+
+// wizard steps
+const Step1 = ({ stepIndex, nextStep }) => {
+  // const { isActive, nextStep, previousStep } = useWizard()
+  return (
+    <Box>
+      <Text size="2xl">Choose a Username</Text>
+      <Box my="10">
+        <FormControl id="username">
+          <FormLabel>Username</FormLabel>
+          <Input type="text" />
+          <FormHelperText>
+            Must be unique, Try using your real name
+          </FormHelperText>
+        </FormControl>
+        <Box my="10" d="flex" justifyContent="flex-end">
+          <Button bg="blue.300" colorScheme="blue" onClick={nextStep}>
+            Next
+          </Button>
+        </Box>
+      </Box>
+    </Box>
+  )
+}
+
+const Step2 = ({ stepIndex, nextStep, previousStep }) => {
+  // const { isActive, nextStep, previousStep } = useWizardStep()
+  return (
+    <>
+      {/* {isActive ? ( */}
+      <>
+        <Text size="2xl">Choose a Username</Text>
+        <Box my="10">
+          <FormControl id="username">
+            <FormLabel>Username</FormLabel>
+            <Input type="text" />
+            <FormHelperText>
+              Must be unique, Try using your real name
+            </FormHelperText>
+          </FormControl>
+          <Box my="10" d="flex" justifyContent="space-evenly">
+            <Button variant="outline" colorScheme="blue" onClick={previousStep}>
+              Previous
+            </Button>
+            <Button bg="blue.300" colorScheme="blue" onClick={nextStep}>
+              Next
+            </Button>
+          </Box>
+        </Box>
+      </>
+      {/* ) : null} */}
+    </>
+  )
+}
+
+const CustomStep = ({ title, formLabel, formHelperText, value = '' }) => {
+  return (
+    <Box>
+      <Text size="2xl">{title}</Text>
+      <Box my="10">
+        <FormControl id="username">
+          <FormLabel>{formLabel}</FormLabel>
+          <Input type="text" value={value} />
+          <FormHelperText>{formHelperText}</FormHelperText>
+        </FormControl>
+      </Box>
+    </Box>
+  )
+}
+
 export default function Create() {
   const router = useRouter()
   const { id } = router.query
-  const { handleSubmit, errors, register, formState } = useForm()
-  const [isPrivate, setIsPrivate] = React.useState(false)
-  const [confirmPrivacy, setConfirmPrivacy] = React.useState(false)
 
-  const [isOpen, setIsOpen] = useState(false)
-
-  const open = () => setIsOpen(!isOpen)
-  const onClose = () => setIsOpen(false)
-  const cancelRef = useRef()
-
-  // video
-  const VideoPreview = ({ stream }) => {
-    const videoRef = useRef(null)
-
-    useEffect(() => {
-      if (videoRef.current && stream) {
-        videoRef.current.srcObject = stream
-      }
-    }, [stream])
-    if (!stream) {
-      return null
-    }
-    return <video ref={videoRef} width={500} height={500} autoPlay controls />
-    // return <VideoPlayer />
-  }
-  // end video
-
-  const alertValue = (value) => {
-    let i
-    i = setTimeout(() => alertValue(value), 3000)
-
-    const alertValue = () => {
-      alert(i)
-    }
-
-    return i
-  }
-
-  const onToggle = (e) => {
-    // if (isPrivate === true) {
-    //   setIsOpen(false)
-    // }
-    setIsPrivate(e.target.value)
-    alertValue(e.target.value)
-    open
-  }
+  // wizard
+  const { nextStep, previousStep, activeStepIndex, getStep } = useWizard()
+  const steps = ['step1', 'step2', 'step3']
 
   return (
-    <>
-      <Layout>
-        {/* <CustomHeading
+    <Layout>
+      {/* <CustomHeading
           title="Create a Introduction"
           description="Record an introduction video"
         /> */}
+      {steps.map(
+        (step, index) =>
+          getStep().isActive && (
+            <CustomStep
+              key={step}
+              steps={steps}
+              nextStep={nextStep}
+              previousStep={previousStep}
+              stepIndex={index}
+              title={`step ${index}`}
+            />
+          )
+      )}
 
-        <VideoRecorder
-          video
-          render={({ previewStream }) => {
-            return <VideoPreview stream={previewStream} />
-          }}
-        />
-        <VideoPlayer />
+      {/* bottom nav */}
+      <Box my="10" d="flex" justifyContent="space-evenly">
+        <Button
+          disabled={activeStepIndex === 0}
+          onClick={previousStep}
+          variant="outline"
+          colorScheme="blue"
+          onClick={previousStep}
+        >
+          Previous
+        </Button>
+        <Button
+          disabled={activeStepIndex === steps.length - 1}
+          bg="blue.300"
+          colorScheme="blue"
+          onClick={nextStep}
+        >
+          Next
+        </Button>
+      </Box>
 
-        {/* OLD UI / Backup */}
-        {/* <Stack spacing="10" w="full" fontSize="lg">
+      {/* OLD UI / Backup */}
+      {/* <Stack spacing="10" w="full" fontSize="lg">
           <UploadImage postRequestUrl="#" />
 
           <form onSubmit={handleSubmit}>
@@ -263,9 +319,7 @@ export default function Create() {
             />
           </form>
         </Stack> */}
-
-        <OutlineButton text="Back home" href="/" as="/" />
-      </Layout>
-    </>
+      {/* <OutlineButton text="Back home" href="/" as="/" /> */}
+    </Layout>
   )
 }
