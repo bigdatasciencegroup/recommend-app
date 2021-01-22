@@ -20,8 +20,12 @@ import {
   Link as ChakraLink,
   Tooltip
 } from '@chakra-ui/react'
-
 import { ArrowForwardIcon, ArrowBackIcon } from '@chakra-ui/icons'
+
+import PlayLottie from '../../lotties/helper'
+import aboutLottie from '../../lotties/about/about.json'
+import importLottie from '../../lotties/import/import.json'
+import helloLottie from '../../lotties/hello/hello.json'
 
 // wizard steps
 const Step1 = ({ stepIndex }) => {
@@ -36,7 +40,19 @@ const Step1 = ({ stepIndex }) => {
             placement="top-start"
             closeDelay={5000}
           > */}
-          <Player
+          <PlayLottie
+            src={helloLottie}
+            loop={true}
+            controls
+            hover
+            autoplay
+            renderer="svg"
+            style={{
+              height: '250px',
+              width: '300px'
+            }}
+          />
+          {/* <Player
             ref={playerRef}
             autoplay
             loop={true}
@@ -44,7 +60,7 @@ const Step1 = ({ stepIndex }) => {
             style={{ height: '250px', width: '300px' }}
           >
             <Controls visible={false} buttons={['play', 'debug']} />
-          </Player>
+          </Player> */}
           <Text mt="4" color="gray.300" fontWeight="900" fontSize="xl">{`Step ${
             stepIndex + 1
           }`}</Text>
@@ -119,17 +135,29 @@ const Step3 = ({ stepIndex, nextStep, previousStep }) => {
         alignItems="center"
         flexDirection="column"
       >
-        <Player
+        <PlayLottie
+          src={importLottie}
+          loop={false}
+          hover
+          autoplay
+          renderer="svg"
+          style={{
+            marginTop: '1rem',
+            height: '150px',
+            width: '200px'
+          }}
+        />
+        {/* <Player
           ref={playerRef}
           autoplay
           renderer="svg"
-          loop={false}
+          loop={true}
           hover
           src="https://assets2.lottiefiles.com/packages/lf20_otwkmzu4.json"
-          style={{ height: '200px', width: '250px' }}
+          style={{ height: '150px', width: '200px' }}
         >
           <Controls visible={false} buttons={['play', 'debug']} />
-        </Player>
+        </Player> */}
         <Text
           alignSelf="flex-start"
           mt="4"
@@ -190,21 +218,31 @@ const Step4 = ({ stepIndex }) => {
   const playerRef = useRef()
   return (
     <Box>
-      <Text fontSize="lg">{`Step ${stepIndex + 1}`}</Text>
-      <Text fontSize="3xl">About You</Text>
-      <Box my="10">
-        <Player
-          ref={playerRef}
-          autoplay
-          renderer="svg"
+      <Box>
+        <PlayLottie
+          src={aboutLottie}
           loop={false}
-          speed=".5"
+          controls
           hover
-          src="https://assets5.lottiefiles.com/packages/lf20_otwkmzu4.json"
-          style={{ height: '200px', width: '250px' }}
-        >
-          <Controls visible={false} buttons={['play', 'debug']} />
-        </Player>
+          // background="#3490DC"
+          style={{
+            marginTop: '1rem',
+            height: '250px',
+            width: '300px',
+            color: '#fff',
+            marginBottom: '2rem'
+          }}
+        />
+        <Text
+          alignSelf="flex-start"
+          color="gray.300"
+          fontWeight="900"
+          fontSize="xl"
+        >{`Step ${stepIndex + 1}`}</Text>
+        <Text mb="2" fontWeight="medium" fontSize="3xl">
+          About You
+        </Text>
+        <Text mb="8">Almost done! Tell everyone a little about yourself</Text>
         <FormControl>
           <FormLabel>Display name</FormLabel>
           <Input
@@ -250,7 +288,7 @@ export default function CreateProfilePage() {
             p="6"
             borderRadius="xl"
             w={['90%', '75%', '50%']}
-            margin="5rem auto"
+            margin="3rem auto"
             d="flex"
             justifyContent="center"
             alignItems="center"

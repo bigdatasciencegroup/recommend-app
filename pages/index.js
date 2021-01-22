@@ -52,7 +52,7 @@ export default function Home() {
           color: '#fff'
         }}
       />
-      <small>
+      {/* <small>
         Animation by:
         <a
           style={{ paddingLeft: '.2rem' }}
@@ -60,9 +60,9 @@ export default function Home() {
         >
           Jignesh Gajjar
         </a>
-      </small>
+      </small> */}
 
-      <Link href="/profile/create">
+      <Link href="/profile/create" as="/profile/create">
         <a style={{ width: '100%', padding: '1.5rem 2rem' }}>
           <Button
             boxShadow="xl"
