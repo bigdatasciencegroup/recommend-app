@@ -26,7 +26,6 @@ const Step1 = ({ stepIndex }) => {
       <Text fontSize="3xl">Choose a Username</Text>
       <Box my="10">
         <FormControl id="username">
-          <FormLabel color="gray.400">Username</FormLabel>
           <InputGroup size="sm" d="flex" alignItems="center">
             <InputLeftAddon
               py="5"
@@ -37,6 +36,8 @@ const Step1 = ({ stepIndex }) => {
               borderRadius="lg"
               fontWeight="bold"
               children="raque.com/"
+              border="2px solid"
+              borderColor="gray.400"
             />
             <Input
               py="5"
@@ -44,6 +45,8 @@ const Step1 = ({ stepIndex }) => {
               borderRadius="lg"
               variant="outline"
               placeholder="Username"
+              border="2px solid"
+              borderColor="gray.400"
             />
           </InputGroup>
           <FormHelperText fontSize="xs">
@@ -57,7 +60,7 @@ const Step1 = ({ stepIndex }) => {
 
 const Step2 = ({ stepIndex }) => {
   return (
-    <Box>
+    <Box mb="10">
       <Text fontSize="lg">{`Step ${stepIndex + 1}`}</Text>
       <Text fontSize="3xl">Add an intro video or photo</Text>
       <Box my="10">
@@ -67,7 +70,7 @@ const Step2 = ({ stepIndex }) => {
   )
 }
 
-const Step3 = ({ stepIndex, nextStep }) => {
+const Step3 = ({ stepIndex, nextStep, previousStep }) => {
   // const { isActive, nextStep, previousStep } = useWizard()
   return (
     <Box>
@@ -86,10 +89,11 @@ const Step3 = ({ stepIndex, nextStep }) => {
           py="6"
           fontSize="lg"
           fontWeight="bold"
-          px="16"
+          px="24"
           borderRadius="full"
           colorScheme="blue"
           bg="blue.400"
+          boxShadow="xl"
         >
           Import
         </Button>
@@ -100,11 +104,23 @@ const Step3 = ({ stepIndex, nextStep }) => {
         margin="0 auto"
         justifyContent="center"
         color="gray.400"
-        my="4"
+        my="8"
         fontWeight="bold"
         background="none"
       >
         Skip for now
+      </Button>
+      <Button
+        d="flex"
+        margin="0 auto"
+        justifyContent="center"
+        border="none"
+        onClick={previousStep}
+        variant="outline"
+        px="10"
+        colorScheme="blue"
+      >
+        Previous Step
       </Button>
     </Box>
   )
@@ -118,11 +134,20 @@ const Step4 = ({ stepIndex }) => {
       <Box my="10">
         <FormControl id="about">
           <FormLabel>Display name</FormLabel>
-          <Input placeholder="Bobbyhalljr" />
+          <Input
+            border="2px solid"
+            borderColor="gray.400"
+            placeholder="Bobbyhalljr"
+          />
         </FormControl>
-        <FormControl id="about">
+        <FormControl id="about" mt="6">
           <FormLabel>Bio</FormLabel>
-          <Input placeholder="Introduce yourself" />
+          <Textarea
+            h="2rem"
+            border="2px solid"
+            borderColor="gray.400"
+            placeholder="Introduce yourself"
+          />
         </FormControl>
       </Box>
     </Box>
@@ -167,7 +192,13 @@ export default function CreateProfilePage() {
                 {/* Step 3 */}
                 <WizardStep key={step}>
                   {({ isActive, index }) =>
-                    isActive && <Step3 stepIndex={index} nextStep={nextStep} />
+                    isActive && (
+                      <Step3
+                        stepIndex={index}
+                        previousStep={previousStep}
+                        nextStep={nextStep}
+                      />
+                    )
                   }
                 </WizardStep>
 
@@ -192,6 +223,7 @@ export default function CreateProfilePage() {
               >
                 <Button
                   px="10"
+                  mr="10"
                   disabled={activeStepIndex === 0}
                   onClick={previousStep}
                   variant="outline"
