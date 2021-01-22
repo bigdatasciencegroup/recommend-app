@@ -139,7 +139,7 @@ export default function Create() {
   const router = useRouter()
   const { id } = router.query
 
-  // wizard
+  // wizard steps
   const steps = ['Step1', 'Step2', 'step3', 'step4']
 
   return (
