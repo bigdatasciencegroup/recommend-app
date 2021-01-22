@@ -48,7 +48,7 @@ const Step1 = ({ stepIndex }) => {
           <Text mt="4" color="gray.300" fontWeight="900" fontSize="xl">{`Step ${
             stepIndex + 1
           }`}</Text>
-          <Text mb="2" fontWeight="medium" fontSize="3xl">
+          <Text mb="4" fontWeight="medium" fontSize="3xl">
             Choose a Username
           </Text>
           {/* </Tooltip> */}
@@ -73,7 +73,6 @@ const Step1 = ({ stepIndex }) => {
                 boxShadow="sm"
                 px="6"
                 borderRadius="lg"
-                fontWeight="semibold"
                 color="gray.100"
                 variant="outline"
                 placeholder="Bobbyhalljr"
@@ -111,18 +110,15 @@ const Step3 = ({ stepIndex, nextStep, previousStep }) => {
   const playerRef = useRef()
   return (
     <Box>
-      <Text fontSize="lg">{`Step ${stepIndex + 1}`}</Text>
-      <Text fontSize="3xl">Import your Linkedin connections</Text>
+      {/* <Text mt="4" color="gray.300" fontWeight="900" fontSize="xl">{`Step ${stepIndex + 1}`}</Text>
+      <Text mb="2" fontWeight="medium" fontSize="3xl">Import your Linkedin connections</Text> */}
       <Box
-        my="10"
+        my="4"
         d="flex"
         justifyContent="center"
         alignItems="center"
         flexDirection="column"
       >
-        <Text mb="4">
-          Import your linkedin connections to get references easier
-        </Text>
         <Player
           ref={playerRef}
           autoplay
@@ -134,6 +130,19 @@ const Step3 = ({ stepIndex, nextStep, previousStep }) => {
         >
           <Controls visible={false} buttons={['play', 'debug']} />
         </Player>
+        <Text
+          alignSelf="flex-start"
+          mt="4"
+          color="gray.300"
+          fontWeight="900"
+          fontSize="xl"
+        >{`Step ${stepIndex + 1}`}</Text>
+        <Text mb="2" fontWeight="medium" fontSize="3xl">
+          Import your Linkedin connections
+        </Text>
+        <Text mb="4">
+          Import your linkedin connections to get references easier
+        </Text>
         <Button
           mt="10"
           py="6"
