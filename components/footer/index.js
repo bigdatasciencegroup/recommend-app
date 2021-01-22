@@ -5,7 +5,7 @@ export default function Footer() {
     <Box
       mt="24"
       bg="#64FCD9"
-      bg="blue.400"
+      bg="gray.600"
       fontWeight="bold"
       p="6"
       fontSize="lg"

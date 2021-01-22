@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
   Box,
   Image,
@@ -11,10 +11,11 @@ import {
   Divider,
   toast
 } from '@chakra-ui/react'
-import PlayLottie from '../../lotties/hello/helper'
+import PlayLottie from '../../lotties/helper'
 
 export default function UploadImage(postRequestUrl) {
   const [image, setImage] = useState({ preview: '', raw: '' })
+  const playerRef = useRef()
 
   let handleUpload
 
@@ -50,7 +51,7 @@ export default function UploadImage(postRequestUrl) {
       justifyContent="center"
       alignItems="center"
       flexDirection="column"
-      mt="16"
+      mt="10"
     >
       <label htmlFor="upload-button">
         {image.preview ? (
@@ -90,21 +91,24 @@ export default function UploadImage(postRequestUrl) {
           <Box
             bg="gray.100"
             color="gray.400"
-            // w={['1/2', 'full']}
-            // h={['1/2', 'full']}
+            w={['1/4', '1/2']}
+            h={['1/4', '1/2']}
             p="6"
             cursor="pointer"
             border="4px dashed #29B6F6"
             _hover={{ color: 'gray.500' }}
-            borderRadius="xl"
+            borderRadius="2xl"
           >
-            <PlayLottie
-              src="https://assets9.lottiefiles.com/packages/lf20_xeyt1z/Photo.json"
-              loop={false}
-              style={{ width: '200px', height: '150px' }}
-              // background="#3490DC"
-              // style={{ borderRadius: '2rem', height: '200px', width: '100%' }}
-            />
+            <Box w="100%">
+              <PlayLottie
+                ref={playerRef}
+                src="https://assets9.lottiefiles.com/packages/lf20_xeyt1z/Photo.json"
+                loop={false}
+                style={{ width: '200px', height: '150px', color: '#333' }}
+                // background="#3490DC"
+                complete={playerRef.complete && <i className="fas fa-camera" />}
+              />
+            </Box>
             <span
               style={{
                 display: 'flex',
@@ -124,7 +128,7 @@ export default function UploadImage(postRequestUrl) {
                 // mt="2"
                 fontWeight="bold"
               >
-                Upload photo/video
+                Upload photo or video
               </Text>
             </span>
           </Box>

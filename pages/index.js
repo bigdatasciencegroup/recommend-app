@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 
-import { Button, Box, Text, Heading } from '@chakra-ui/react'
+import { Button, Box, Text, Tooltip } from '@chakra-ui/react'
 
 import Layout from '../components/layout'
 import HomeSVG from '../components/homeSVG'
-import PlayLottie from '../lotties/hello/helper'
+import PlayLottie from '../lotties/helper'
+
+import homeLottie from '../lotties/home/home.json'
 
 export default function Home() {
+  // const homeLottie = useState('../lotties')
   return (
     <Layout>
       <Box textAlign="center">
@@ -21,7 +24,7 @@ export default function Home() {
           Give. Recieve. Share.
         </Text>
         <Text
-          my="8"
+          mt="8"
           // mx="2"
           letterSpacing="1"
           fontSize={['lg', 'xl']}
@@ -37,11 +40,27 @@ export default function Home() {
 
       {/* <HomeSVG /> */}
       <PlayLottie
-        src="https://assets6.lottiefiles.com/packages/lf20_x62chJ.json"
-        loop={true}
+        src={homeLottie}
+        loop={false}
+        hover
+        controls
         // background="#3490DC"
-        style={{ height: '300px', width: '300px', color: '#fff' }}
+        style={{
+          marginTop: '1rem',
+          height: '250px',
+          width: '300px',
+          color: '#fff'
+        }}
       />
+      <small>
+        Animation by:
+        <a
+          style={{ paddingLeft: '.2rem' }}
+          href="https://lottiefiles.com/jigneshgajjar"
+        >
+          Jignesh Gajjar
+        </a>
+      </small>
 
       <Link href="/profile/create">
         <a style={{ width: '100%', padding: '1.5rem 2rem' }}>

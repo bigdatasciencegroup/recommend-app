@@ -29,9 +29,7 @@ const Step1 = ({ stepIndex }) => {
   return (
     <>
       <Box>
-        <Text fontSize="lg">{`Step ${stepIndex + 1}`}</Text>
-        <Text fontSize="3xl">Choose a Username</Text>
-        <Box my="10">
+        <Box>
           {/* <Tooltip
             shouldWrapChildren
             label="Animation by: Emad Moradian"
@@ -42,14 +40,20 @@ const Step1 = ({ stepIndex }) => {
             ref={playerRef}
             autoplay
             loop={true}
-            src="https://assets7.lottiefiles.com/packages/lf20_ymbzgxgc.json"
-            style={{ height: '300px', width: '300px' }}
+            src="https://assets3.lottiefiles.com/packages/lf20_ymbzgxgc.json"
+            style={{ height: '250px', width: '300px' }}
           >
             <Controls visible={false} buttons={['play', 'debug']} />
           </Player>
+          <Text mt="4" color="gray.300" fontWeight="900" fontSize="xl">{`Step ${
+            stepIndex + 1
+          }`}</Text>
+          <Text mb="2" fontWeight="medium" fontSize="3xl">
+            Choose a Username
+          </Text>
           {/* </Tooltip> */}
-          <FormControl id="username">
-            <InputGroup size="sm" d="flex" alignItems="center">
+          <FormControl id="username" mb="8">
+            <InputGroup size="sm" d="flex" alignItems="center" s>
               <InputLeftAddon
                 py="5"
                 px="6"
@@ -58,8 +62,9 @@ const Step1 = ({ stepIndex }) => {
                 bg="none"
                 borderRadius="lg"
                 fontWeight="bold"
+                color="gray.500"
                 children="raque.com/"
-                border="2px solid"
+                border="1px solid"
                 borderColor="gray.400"
                 boxShadow="sm"
               />
@@ -68,9 +73,11 @@ const Step1 = ({ stepIndex }) => {
                 boxShadow="sm"
                 px="6"
                 borderRadius="lg"
+                fontWeight="semibold"
+                color="gray.100"
                 variant="outline"
                 placeholder="Bobbyhalljr"
-                border="2px solid"
+                border="1px solid"
                 borderColor="gray.400"
               />
             </InputGroup>
@@ -85,22 +92,15 @@ const Step1 = ({ stepIndex }) => {
 }
 
 const Step2 = ({ stepIndex }) => {
-  const playerRef = useRef()
   return (
-    <Box mb="10">
-      <Text fontSize="lg">{`Step ${stepIndex + 1}`}</Text>
-      <Text fontSize="3xl">Add an intro video or photo</Text>
+    <Box>
+      <Text mt="4" color="gray.300" fontWeight="900" fontSize="xl">{`Step ${
+        stepIndex + 1
+      }`}</Text>
+      <Text mb="2" fontWeight="medium" fontSize="3xl">
+        Upload a profile picture or video
+      </Text>
       <Box my="10">
-        {/* <Player
-          ref={playerRef}
-          autoplay
-          renderer="svg"
-          loop={false}
-          src="https://assets9.lottiefiles.com/packages/lf20_xeyt1z/Photo.json"
-          style={{ height: '300px', width: '300px' }}
-        >
-          <Controls visible={false} buttons={['play', 'debug']} />
-        </Player> */}
         <UploadImage postRequestUrl="#" />
       </Box>
     </Box>
@@ -108,7 +108,7 @@ const Step2 = ({ stepIndex }) => {
 }
 
 const Step3 = ({ stepIndex, nextStep, previousStep }) => {
-  // const { isActive, nextStep, previousStep } = useWizard()
+  const playerRef = useRef()
   return (
     <Box>
       <Text fontSize="lg">{`Step ${stepIndex + 1}`}</Text>
@@ -120,7 +120,20 @@ const Step3 = ({ stepIndex, nextStep, previousStep }) => {
         alignItems="center"
         flexDirection="column"
       >
-        <Text>Import your linkedin connections to get references easier</Text>
+        <Text mb="4">
+          Import your linkedin connections to get references easier
+        </Text>
+        <Player
+          ref={playerRef}
+          autoplay
+          renderer="svg"
+          loop={false}
+          hover
+          src="https://assets2.lottiefiles.com/packages/lf20_otwkmzu4.json"
+          style={{ height: '200px', width: '250px' }}
+        >
+          <Controls visible={false} buttons={['play', 'debug']} />
+        </Player>
         <Button
           mt="10"
           py="6"
@@ -165,11 +178,24 @@ const Step3 = ({ stepIndex, nextStep, previousStep }) => {
 }
 
 const Step4 = ({ stepIndex }) => {
+  const playerRef = useRef()
   return (
     <Box>
       <Text fontSize="lg">{`Step ${stepIndex + 1}`}</Text>
       <Text fontSize="3xl">About You</Text>
       <Box my="10">
+        <Player
+          ref={playerRef}
+          autoplay
+          renderer="svg"
+          loop={false}
+          speed=".5"
+          hover
+          src="https://assets5.lottiefiles.com/packages/lf20_otwkmzu4.json"
+          style={{ height: '200px', width: '250px' }}
+        >
+          <Controls visible={false} buttons={['play', 'debug']} />
+        </Player>
         <FormControl>
           <FormLabel>Display name</FormLabel>
           <Input
@@ -203,31 +229,11 @@ const Citation = ({ src, author }) => (
   </>
 )
 
-export const playLottie = ({
-  src,
-  width = '300px',
-  height = '300px',
-  controls = false
-}) => {
-  return (
-    <Player
-      autoplay
-      renderer="svg"
-      loop
-      background="transparent"
-      src={`${src}`}
-      style={{ height, width }}
-    >
-      <Controls visible={controls} buttons={['play', 'debug']} />
-    </Player>
-  )
-}
-
 export default function CreateProfilePage() {
   // wizard steps
   const steps = ['Step1', 'Step2', 'step3', 'step4']
   return (
-    <>
+    <Box overflowX="hidden">
       <Wizard>
         {({ activeStepIndex, nextStep, previousStep }) => (
           <Box
@@ -322,6 +328,6 @@ export default function CreateProfilePage() {
           </Box>
         )}
       </Wizard>
-    </>
+    </Box>
   )
 }

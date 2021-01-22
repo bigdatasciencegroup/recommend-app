@@ -3,12 +3,14 @@ import { Player, Controls } from '@lottiefiles/react-lottie-player'
 
 const PlayLottie = ({
   src,
+  hover,
   width = '300px',
   height = '300px',
   controls = false,
   loop,
   background,
-  style
+  style,
+  complete
 }) => {
   const playerRef = useRef()
   return (
@@ -17,9 +19,11 @@ const PlayLottie = ({
       autoplay
       renderer="svg"
       loop={loop}
+      hover={hover}
       background={background}
-      src={`${src}`}
+      src={src}
       style={style}
+      complete={complete}
     >
       <Controls visible={controls} buttons={['play', 'debug']} />
     </Player>
