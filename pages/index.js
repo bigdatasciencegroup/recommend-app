@@ -5,6 +5,7 @@ import { Button, Box, Text, Heading } from '@chakra-ui/react'
 
 import Layout from '../components/layout'
 import HomeSVG from '../components/homeSVG'
+import PlayLottie from '../lotties/hello/helper'
 
 export default function Home() {
   return (
@@ -27,16 +28,22 @@ export default function Home() {
           fontWeight="700"
           color="gray.500"
         >
-          We make it super easy to <span className="blue-text">give</span>,{' '}
+          We make it super easy to<span className="blue-text">give</span>,{' '}
           <span className="blue-text">recieve</span> and{' '}
           <span className="blue-text">share</span> the good things people say
           about each other
         </Text>
       </Box>
 
-      <HomeSVG />
+      {/* <HomeSVG /> */}
+      <PlayLottie
+        src="https://assets6.lottiefiles.com/packages/lf20_x62chJ.json"
+        loop={true}
+        // background="#3490DC"
+        style={{ height: '300px', width: '300px', color: '#fff' }}
+      />
 
-      <Link href="/recommendation/create">
+      <Link href="/profile/create">
         <a style={{ width: '100%', padding: '1.5rem 2rem' }}>
           <Button
             boxShadow="xl"
@@ -45,11 +52,11 @@ export default function Home() {
             fontWeight="bold"
             fontSize="lg"
             color="white"
-            py="4"
-            px="6"
+            py="6"
+            px="10"
             w="full"
           >
-            Give a recommendation
+            Let's get started
           </Button>
         </a>
       </Link>
