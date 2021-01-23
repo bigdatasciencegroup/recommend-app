@@ -100,14 +100,15 @@ export default function UploadImage(postRequestUrl) {
             borderRadius="2xl"
           >
             <Box w="100%">
-              <PlayLottie
+              {/* <i class="fas fa-camera"></i> */}
+              {/* <PlayLottie
                 ref={playerRef}
                 src="https://assets9.lottiefiles.com/packages/lf20_xeyt1z/Photo.json"
                 loop={false}
                 style={{ width: '200px', height: '150px', color: '#333' }}
                 // background="#3490DC"
                 complete={playerRef.complete && <i className="fas fa-camera" />}
-              />
+              /> */}
             </Box>
             <span
               style={{
@@ -119,7 +120,7 @@ export default function UploadImage(postRequestUrl) {
               // className="fa-3x"
               fill="#a5a5a5"
             >
-              {/* <i className="fas fa-camera" /> */}
+              <i className="fas fa-3x fa-camera" />
               <Text
                 textAlign="center"
                 whiteSpace="nowrap"

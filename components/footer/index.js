@@ -5,11 +5,11 @@ export default function Footer() {
     <Box
       mt="24"
       bg="#64FCD9"
-      bg="gray.600"
+      // bg="blue.100"
       fontWeight="bold"
       p="6"
       fontSize="lg"
-      color="white"
+      color="#333"
       display="flex"
       justifyContent="center"
       textAlign="center"
@@ -19,7 +19,7 @@ export default function Footer() {
       <footer>
         Made with <span> ❤️ </span> and hard work by: <br />
         <ChakraLink
-          color="gray.200"
+          color="gray.600"
           textDecoration="underline"
           href="https://bobbybytez.io"
         >

@@ -27,6 +27,8 @@ import aboutLottie from '../../lotties/about/about.json'
 import importLottie from '../../lotties/import/import.json'
 import helloLottie from '../../lotties/hello/hello.json'
 
+import TrophySVG from '../../components/trophySVG'
+
 // wizard steps
 const Step1 = ({ stepIndex }) => {
   const playerRef = useRef()
@@ -34,40 +36,26 @@ const Step1 = ({ stepIndex }) => {
     <>
       <Box>
         <Box>
-          {/* <Tooltip
-            shouldWrapChildren
-            label="Animation by: Emad Moradian"
-            placement="top-start"
-            closeDelay={5000}
-          > */}
           <PlayLottie
+            ref={playerRef}
             src={helloLottie}
             loop={true}
             controls
             hover
-            autoplay
-            renderer="svg"
+            // autoplay
+            // renderer="svg"
             style={{
               height: '250px',
               width: '300px'
             }}
           />
-          {/* <Player
-            ref={playerRef}
-            autoplay
-            loop={true}
-            src="https://assets3.lottiefiles.com/packages/lf20_ymbzgxgc.json"
-            style={{ height: '250px', width: '300px' }}
-          >
-            <Controls visible={false} buttons={['play', 'debug']} />
-          </Player> */}
+
           <Text mt="4" color="gray.300" fontWeight="900" fontSize="xl">{`Step ${
             stepIndex + 1
           }`}</Text>
-          <Text mb="4" fontWeight="medium" fontSize="3xl">
+          <Text mb="6" fontWeight="medium" fontSize="3xl">
             Choose a Username
           </Text>
-          {/* </Tooltip> */}
           <FormControl id="username" mb="8">
             <InputGroup size="sm" d="flex" alignItems="center" s>
               <InputLeftAddon
@@ -80,19 +68,19 @@ const Step1 = ({ stepIndex }) => {
                 fontWeight="bold"
                 color="gray.500"
                 children="raque.com/"
-                border="1px solid"
+                border="2px solid"
                 borderColor="gray.400"
-                boxShadow="sm"
+                // boxShadow="sm"
               />
               <Input
                 py="5"
-                boxShadow="sm"
+                // boxShadow="sm"
                 px="6"
                 borderRadius="lg"
                 color="gray.100"
                 variant="outline"
                 placeholder="Bobbyhalljr"
-                border="1px solid"
+                border="2px solid"
                 borderColor="gray.400"
               />
             </InputGroup>
@@ -123,11 +111,8 @@ const Step2 = ({ stepIndex }) => {
 }
 
 const Step3 = ({ stepIndex, nextStep, previousStep }) => {
-  const playerRef = useRef()
   return (
     <Box>
-      {/* <Text mt="4" color="gray.300" fontWeight="900" fontSize="xl">{`Step ${stepIndex + 1}`}</Text>
-      <Text mb="2" fontWeight="medium" fontSize="3xl">Import your Linkedin connections</Text> */}
       <Box
         my="4"
         d="flex"
@@ -147,29 +132,20 @@ const Step3 = ({ stepIndex, nextStep, previousStep }) => {
             width: '200px'
           }}
         />
-        {/* <Player
-          ref={playerRef}
-          autoplay
-          renderer="svg"
-          loop={true}
-          hover
-          src="https://assets2.lottiefiles.com/packages/lf20_otwkmzu4.json"
-          style={{ height: '150px', width: '200px' }}
-        >
-          <Controls visible={false} buttons={['play', 'debug']} />
-        </Player> */}
+
         <Text
           alignSelf="flex-start"
+          p="4"
           mt="4"
           color="gray.300"
           fontWeight="900"
           fontSize="xl"
         >{`Step ${stepIndex + 1}`}</Text>
-        <Text mb="2" fontWeight="medium" fontSize="3xl">
+        <Text p="4" mb="2" fontWeight="medium" fontSize="3xl">
           Import your Linkedin connections
         </Text>
-        <Text mb="4">
-          Import your linkedin connections to get references easier
+        <Text p="4" mb="4">
+          Import your linkedin connections to get a better experience
         </Text>
         <Button
           mt="10"
@@ -185,31 +161,35 @@ const Step3 = ({ stepIndex, nextStep, previousStep }) => {
           Import Connections
         </Button>
       </Box>
-      <Button
-        d="flex"
-        onClick={nextStep}
-        margin="0 auto"
-        justifyContent="center"
-        color="gray.400"
-        my="8"
-        fontWeight="bold"
-        background="none"
-      >
-        Skip for now
-      </Button>
-      <Button
-        d="flex"
-        margin="0 auto"
-        justifyContent="center"
-        border="none"
-        onClick={previousStep}
-        variant="outline"
-        px="10"
-        colorScheme="blue"
-        leftIcon={<ArrowBackIcon />}
-      >
-        Previous Step
-      </Button>
+      <Box d="flex" mt="10" alignItems="center" justifyContent="center">
+        <Button
+          d="flex"
+          margin="0 auto"
+          justifyContent="center"
+          // border="none"
+          onClick={previousStep}
+          variant="outline"
+          color="blue.300"
+          px="4"
+          colorScheme="blue"
+          leftIcon={<ArrowBackIcon />}
+        >
+          Previous Step
+        </Button>
+        <Button
+          d="flex"
+          rightIcon={<ArrowForwardIcon />}
+          onClick={nextStep}
+          margin="0 auto"
+          justifyContent="center"
+          color="gray.400"
+          my="8"
+          fontWeight="bold"
+          background="none"
+        >
+          Skip for now
+        </Button>
+      </Box>
     </Box>
   )
 }
@@ -217,51 +197,37 @@ const Step3 = ({ stepIndex, nextStep, previousStep }) => {
 const Step4 = ({ stepIndex }) => {
   const playerRef = useRef()
   return (
+    // <Box>
     <Box>
-      <Box>
-        <PlayLottie
-          src={aboutLottie}
-          loop={false}
-          controls
-          hover
-          // background="#3490DC"
-          style={{
-            marginTop: '1rem',
-            height: '250px',
-            width: '300px',
-            color: '#fff',
-            marginBottom: '2rem'
-          }}
+      <Text
+        alignSelf="flex-start"
+        color="gray.300"
+        fontWeight="900"
+        fontSize="xl"
+      >{`Step ${stepIndex + 1}`}</Text>
+      <Text mb="2" fontWeight="medium" fontSize="3xl">
+        About You
+      </Text>
+      <Text mb="8">Almost done! Tell everyone a little about yourself</Text>
+      <FormControl>
+        <FormLabel>Display name</FormLabel>
+        <Input
+          border="2px solid"
+          borderColor="gray.400"
+          placeholder="Bobbyhalljr"
         />
-        <Text
-          alignSelf="flex-start"
-          color="gray.300"
-          fontWeight="900"
-          fontSize="xl"
-        >{`Step ${stepIndex + 1}`}</Text>
-        <Text mb="2" fontWeight="medium" fontSize="3xl">
-          About You
-        </Text>
-        <Text mb="8">Almost done! Tell everyone a little about yourself</Text>
-        <FormControl>
-          <FormLabel>Display name</FormLabel>
-          <Input
-            border="2px solid"
-            borderColor="gray.400"
-            placeholder="Bobbyhalljr"
-          />
-        </FormControl>
-        <FormControl mt="6">
-          <FormLabel>Bio</FormLabel>
-          <Textarea
-            h="2rem"
-            border="2px solid"
-            borderColor="gray.400"
-            placeholder="Introduce yourself"
-          />
-        </FormControl>
-      </Box>
+      </FormControl>
+      <FormControl mt="6">
+        <FormLabel>Bio</FormLabel>
+        <Textarea
+          h="2rem"
+          border="2px solid"
+          borderColor="gray.400"
+          placeholder="Introduce yourself"
+        />
+      </FormControl>
     </Box>
+    // </Box>
   )
 }
 
@@ -282,7 +248,13 @@ export default function CreateProfilePage() {
   return (
     <Box overflowX="hidden">
       <Wizard>
-        {({ activeStepIndex, nextStep, previousStep }) => (
+        {({
+          activeStepIndex,
+          nextStep,
+          previousStep,
+          maxActivatedStepIndex = 3,
+          resetToStep
+        }) => (
           <Box
             boxShadow="xl"
             p="6"
@@ -363,7 +335,11 @@ export default function CreateProfilePage() {
                     // disabled={activeStepIndex === steps.length - 2}
                     bg="blue.300"
                     colorScheme="blue"
-                    onClick={nextStep}
+                    onClick={
+                      maxActivatedStepIndex === 3
+                        ? resetToStep(0) && alert('you done !')
+                        : nextStep
+                    }
                   >
                     {activeStepIndex === 3 ? 'Submit' : 'Next'}
                   </Button>

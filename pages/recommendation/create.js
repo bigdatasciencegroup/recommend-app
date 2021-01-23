@@ -1,234 +1,39 @@
-import React, { useRef, useEffect, useState, Fragment } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import {
-  FormErrorMessage,
-  FormLabel,
-  FormControl,
-  Button,
-  useDisclosure,
-  Input,
-  Box,
-  Stack,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  Select,
-  Textarea,
-  Text,
-  Tag,
-  Heading,
-  Avatar,
-  Switch,
-  Divider,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
-  AspectRatio,
-  AspectRatioProps,
-  FormHelperText
-} from '@chakra-ui/react'
-import { ArrowBackIcon } from '@chakra-ui/icons'
-import { useForm } from 'react-hook-form'
-import { useReactMediaRecorder, ReactMediaRecorder } from 'react-media-recorder'
-import ReactPlayer from 'react-player'
+// import React from 'react'
+// import Link from 'next/link'
+// import { useRouter } from 'next/router'
+// import {
+//   FormLabel,
+//   FormControl,
+//   Button,
+//   Input,
+//   Box,
+//   InputGroup,
+//   InputLeftAddon,
 
-import Layout from '../../components/layout'
-import UploadImage from '../../components/uploadImage'
-import SolidButton from '../../components/buttons/solidButton'
-import OutlineButton from '../../components/buttons/outlineButton'
-import CustomHeading from '../../components/heading/customHeading'
-import {
-  VideoPlayer,
-  Duration,
-  VideoRecorder
-} from '../../components/mediaPlayer/index'
+//   Text,
+//   FormHelperText
+// } from '@chakra-ui/react'
+// import { ArrowBackIcon } from '@chakra-ui/icons'
+// import { useForm } from 'react-hook-form'
+// import { useReactMediaRecorder, ReactMediaRecorder } from 'react-media-recorder'
+// import ReactPlayer from 'react-player'
 
-// wizard
-import { Wizard, WizardStep } from 'react-wizard-primitive'
+// import Layout from '../../components/layout'
+// import UploadImage from '../../components/uploadImage'
+// import SolidButton from '../../components/buttons/solidButton'
+// import OutlineButton from '../../components/buttons/outlineButton'
+// import CustomHeading from '../../components/heading/customHeading'
+// import {
+//   VideoPlayer,
+//   Duration,
+//   VideoRecorder
+// } from '../../components/mediaPlayer/index'
 
-// wizard steps
-const Step1 = ({ stepIndex }) => {
-  return (
-    <Box>
-      <Text fontSize="lg">{`Step ${stepIndex}`}</Text>
-      <Text fontSize="3xl">Choose a Username</Text>
-      <Box my="10">
-        <FormControl id="username">
-          <FormLabel color="gray.400">Username</FormLabel>
-          <InputGroup size="sm">
-            <InputLeftAddon
-              p="4"
-              // bg="blue.400"
-              // color="white"
-              bg="none"
-              borderRadius="xl"
-              fontWeight="bold"
-              children="raque.com/"
-            />
-            <Input p="4" borderRadius="xl" placeholder="username" />
-          </InputGroup>
-          <FormHelperText fontSize="xs">
-            * Must be unique, Try using your real name
-          </FormHelperText>
-        </FormControl>
-      </Box>
-    </Box>
-  )
+{
+  /* OLD UI / Backup */
 }
-
-const Step2 = ({ stepIndex }) => {
-  return (
-    <Box>
-      <Text fontSize="lg">{`Step ${stepIndex}`}</Text>
-      <Text fontSize="3xl">Add an intro video or photo</Text>
-      <Box my="10">
-        <UploadImage postRequestUrl="#" />
-      </Box>
-    </Box>
-  )
-}
-
-const Step3 = ({ stepIndex }) => {
-  // const { isActive, nextStep, previousStep } = useWizard()
-  return (
-    <Box>
-      <Text pb="6" fontSize="lg">{`Step ${stepIndex}`}</Text>
-      <Text fontSize="3xl">Import your Linkedin connections</Text>
-      <Box
-        my="24"
-        d="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-      >
-        <Text>
-          Import your linkedin connections to have the best experience
-        </Text>
-        <Button mt="10" borderRadius="full" colorScheme="blue" bg="blue.600">
-          Import
-        </Button>
-      </Box>
-    </Box>
-  )
-}
-
-const Step4 = ({ stepIndex }) => {
-  return (
-    <Box>
-      <Text fontSize="lg">{`Step ${stepIndex}`}</Text>
-      <Text fontSize="3xl">About You</Text>
-      <Box my="10">
-        <FormControl id="about">
-          <FormLabel>Display name</FormLabel>
-          <Input placeholder="Bobbyhalljr" />
-        </FormControl>
-        <FormControl id="about">
-          <FormLabel>Bio</FormLabel>
-          <Input placeholder="Introduce yourself" />
-        </FormControl>
-      </Box>
-    </Box>
-  )
-}
-
-export default function Create() {
-  const router = useRouter()
-  const { id } = router.query
-
-  // wizard steps
-  const steps = ['Step1', 'Step2', 'step3', 'step4']
-
-  return (
-    <>
-      {/* // <Layout> */}
-      <Box w="100vw" h="100vh">
-        <Wizard>
-          {({ activeStepIndex, nextStep, previousStep }) => (
-            <Box
-              boxShadow="xl"
-              p="6"
-              borderRadius="xl"
-              w={['90%', '75%', '50%']}
-              margin="5rem auto"
-              d="flex"
-              justifyContent="center"
-              alignItems="center"
-              flexDirection="column"
-            >
-              <div>
-                {/* render a WizardStep for each color, only show the active one */}
-                {steps.map((step) => (
-                  <>
-                    {/* Step 1 */}
-                    <WizardStep key={step}>
-                      {({ isActive, index }) =>
-                        isActive && <Step1 stepIndex={index} step={step} />
-                      }
-                    </WizardStep>
-
-                    {/* Step 2 */}
-                    <WizardStep key={step}>
-                      {({ isActive, index }) =>
-                        isActive && <Step2 stepIndex={index} step={step} />
-                      }
-                    </WizardStep>
-
-                    {/* Step 3 */}
-                    <WizardStep key={step}>
-                      {({ isActive, index }) =>
-                        isActive && <Step3 stepIndex={index} step={step} />
-                      }
-                    </WizardStep>
-
-                    {/* Step 4 */}
-                    <WizardStep key={step}>
-                      {({ isActive, index }) =>
-                        isActive && <Step4 stepIndex={index} step={step} />
-                      }
-                    </WizardStep>
-                  </>
-                ))}
-              </div>
-              {/* bottom nav */}
-              <Box
-                w={['100%', '75%', '50%']}
-                maxW="2xl"
-                my="10"
-                d="flex"
-                justifyContent="space-evenly"
-              >
-                <Button
-                  px="10"
-                  disabled={activeStepIndex === 0}
-                  onClick={previousStep}
-                  variant="outline"
-                  color="blue.300"
-                  colorScheme="blue"
-                  onClick={previousStep}
-                >
-                  Previous
-                </Button>
-                <Button
-                  px="10"
-                  disabled={activeStepIndex === steps.length - 1}
-                  bg="blue.300"
-                  colorScheme="blue"
-                  onClick={nextStep}
-                >
-                  Next
-                </Button>
-              </Box>
-            </Box>
-          )}
-        </Wizard>
-      </Box>
-
-      {/* OLD UI / Backup */}
-      {/* <Stack spacing="10" w="full" fontSize="lg">
+{
+  /* <Stack spacing="10" w="full" fontSize="lg">
           <UploadImage postRequestUrl="#" />
 
           <form onSubmit={handleSubmit}>
@@ -377,9 +182,14 @@ export default function Create() {
               as={`/recommendation/${id}`}
             />
           </form>
-        </Stack> */}
-      {/* <OutlineButton text="Back home" href="/" as="/" /> */}
-      {/* // </Layout> */}
-    </>
-  )
+        </Stack> */
 }
+{
+  /* <OutlineButton text="Back home" href="/" as="/" /> */
+}
+{
+  /* // </Layout> */
+}
+//     </>
+//   )
+// }
