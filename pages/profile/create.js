@@ -39,8 +39,8 @@ const Step1 = ({ stepIndex }) => {
           <PlayLottie
             ref={playerRef}
             src={helloLottie}
-            loop={true}
-            controls
+            loop={false}
+            // controls
             hover
             // autoplay
             // renderer="svg"

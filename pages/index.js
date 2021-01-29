@@ -41,9 +41,9 @@ export default function Home() {
       {/* <HomeSVG /> */}
       <PlayLottie
         src={homeLottie}
-        loop={false}
+        loop={true}
         hover
-        controls
+        // controls
         // background="#3490DC"
         style={{
           marginTop: '1rem',
