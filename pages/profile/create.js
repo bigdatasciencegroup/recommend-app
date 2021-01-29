@@ -78,7 +78,7 @@ const Step1 = ({ stepIndex }) => {
                 // boxShadow="sm"
                 px="6"
                 borderRadius="lg"
-                color="gray.100"
+                color="gray.500"
                 variant="outline"
                 placeholder="Bobbyhalljr"
                 border="2px solid"
@@ -216,6 +216,7 @@ const Step4 = ({ stepIndex }) => {
           border="2px solid"
           borderColor="gray.400"
           placeholder="Bobbyhalljr"
+          color="gray.500"
         />
       </FormControl>
       <FormControl mt="6">
@@ -225,6 +226,7 @@ const Step4 = ({ stepIndex }) => {
           border="2px solid"
           borderColor="gray.400"
           placeholder="Introduce yourself"
+          color="gray.500"
         />
       </FormControl>
     </Box>
