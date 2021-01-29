@@ -26,6 +26,7 @@ import PlayLottie from '../../lotties/helper'
 import aboutLottie from '../../lotties/about/about.json'
 import importLottie from '../../lotties/import/import.json'
 import helloLottie from '../../lotties/hello/hello.json'
+import welcomeLottie from '../../lotties/welcome/welcome.json'
 
 import TrophySVG from '../../components/trophySVG'
 
@@ -38,7 +39,7 @@ const Step1 = ({ stepIndex }) => {
         <Box>
           <PlayLottie
             ref={playerRef}
-            src={helloLottie}
+            src={welcomeLottie}
             loop={false}
             // controls
             hover
