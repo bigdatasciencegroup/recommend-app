@@ -119,11 +119,11 @@ const Navbar = (props) => {
                 <MenuItems>Profile</MenuItems>
               </a>
             </Link> */}
-            <Link href="/recommendation/create" as="/recommendation/create">
+            {/* <Link href="/recommendation/create" as="/recommendation/create">
               <a>
                 <MenuItems>Give a Recommandation</MenuItems>
               </a>
-            </Link>
+            </Link> */}
           </Box>
         </Box>
       </Box>
@@ -240,7 +240,7 @@ const Navbar = (props) => {
                     </a>
                   </Link>
                 </ListItem> */}
-                <ListItem py="2">
+                {/* <ListItem py="2">
                   <Link
                     href="/recommendation/create"
                     as="/recommendation/create"
@@ -249,7 +249,7 @@ const Navbar = (props) => {
                       <MenuItems>Give a Recommandation</MenuItems>
                     </a>
                   </Link>
-                </ListItem>
+                </ListItem> */}
               </UnorderedList>
             </Stack>
           </DrawerBody>
